@@ -28,7 +28,7 @@
                                 aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
-                        <form action="#" method="POST">
+                        <form action="{% url 'account:user_login' %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group">
                                 <input id="email-modal" type="email" placeholder="email" name="email"
@@ -39,7 +39,7 @@
                                     class="form-control">
                             </div>
                             <div class="text-right">
-                                <h5><a href="#">Forget Password?</a></h5>
+                                <h5><a href="{% url 'account:password_reset' %}">Forget Password?</a></h5>
                             </div>
                             <p class="text-center">
                                 <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
