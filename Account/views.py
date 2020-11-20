@@ -9,6 +9,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .models import User, Profile
 from .forms import SignUpForm, CustomPasswordResetForm, ProfileForm
@@ -126,3 +127,17 @@ def profile(request):
             form = ProfileForm(instance=profile)
             messages.success(request, 'Changed Saved!')
     return render(request, 'Account/profile.html', {'form': form})
+
+
+#PASSWORD CHANGE VIEW
+@login_required
+def change_password(request):
+    current_user = request.user
+    form = PasswordChangeForm(current_user)
+    if request.method == "POST":
+        form = PasswordChangeForm(current_user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Password Changed Successfully! Please log in.')
+            return redirect("account:profile")
+    return render(request, 'Account/change_password.html', {'form': form})
