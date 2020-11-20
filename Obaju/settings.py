@@ -70,12 +70,8 @@ WSGI_APPLICATION = 'Obaju.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'obaju',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
@@ -126,3 +122,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #CRISPYY FORM
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+#CUSTOM USER MODEL
+AUTH_USER_MODEL = 'Account.User'
+
+
+#LOGIN URL
+LOGIN_URL = '/account/login/'
+
+
+#GMAIL CONFIRMATION
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 587
