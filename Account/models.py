@@ -56,7 +56,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    username = models.CharField(max_length=264, blank=True)
     fullname = models.CharField(max_length=264, blank=True)
     address = models.CharField(max_length=300, blank=True)
     city = models.CharField(max_length=50, blank=True)

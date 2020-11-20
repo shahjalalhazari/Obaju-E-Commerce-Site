@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import User, Profile
-from .forms import SignUpForm, CustomPasswordResetForm
+from .forms import SignUpForm, CustomPasswordResetForm, ProfileForm
 from .token import activation_token
 
 
@@ -112,3 +112,17 @@ def password_reset_request(request):
 			messages.warning(request, 'An invalid email has been entered.')
 	password_reset_form = CustomPasswordResetForm()
 	return render(request=request, template_name="Account/Password/password_reset.html", context={"password_reset_form":password_reset_form})
+
+
+#CUSTOMER PROFILE VIEW
+@login_required
+def profile(request):
+    profile = Profile.objects.get(user=request.user)
+    form = ProfileForm(instance=profile)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            form = ProfileForm(instance=profile)
+            messages.success(request, 'Changed Saved!')
+    return render(request, 'Account/profile.html', {'form': form})
