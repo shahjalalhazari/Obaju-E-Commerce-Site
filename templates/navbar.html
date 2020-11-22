@@ -4,15 +4,17 @@
     <div id="top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">+880 1624 677501</a><a href="#" class="ml-1">01/45, Pennai, Gouripur, Daudkandi, Comilla - 3517 Bangladesh</a></div>
+                <div class="col-lg-8 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">+880 1624
+                        677501</a><a href="#" class="ml-1">01/45, Pennai, Gouripur, Daudkandi, Comilla - 3517
+                        Bangladesh</a></div>
                 <div class="col-lg-4 text-center text-lg-right">
                     <ul class="menu list-inline mb-0">
                         {% if request.user.is_authenticated %}
-                            <li class="list-inline-item"><a href="{% url 'account:logout' %}">Logout</a></li>
+                        <li class="list-inline-item"><a href="{% url 'account:logout' %}">Logout</a></li>
                         {% else %}
-                            <li class="list-inline-item"><a href="#" data-toggle="modal"
+                        <li class="list-inline-item"><a href="#" data-toggle="modal"
                                 data-target="#login-modal">Login</a></li>
-                            <li class="list-inline-item"><a href="{% url 'account:signup' %}">Register</a></li>
+                        <li class="list-inline-item"><a href="{% url 'account:signup' %}">Register</a></li>
                         {% endif %}
                         <li class="list-inline-item"><a href="#">Contact</a></li>
                     </ul>
@@ -74,61 +76,41 @@
             </div>
             <div id="navigation" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a href="{% url 'store:home' %}" class="nav-link {% active_link 'store:home' strict=True %}">Home</a></li>
+                    <li class="nav-item"><a href="{% url 'store:home' %}"
+                            class="nav-link {% active_link 'store:home' strict=True %}">Home</a></li>
+                    {% for whom in whoms %}
                     <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown"
-                        data-delay="200" class="dropdown-toggle nav-link">Men<b class="caret"></b></a>
+                            data-delay="200" class="dropdown-toggle nav-link">{{ whom.whom }}<b class="caret"></b></a>
                         <ul class="dropdown-menu megamenu">
                             <li>
                                 <div class="row">
+                                    {% for category in whom.for_whom.all %}
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>Clothing</h5>
+                                        <h5>{{ category.name }}</h5>
                                         <ul class="list-unstyled mb-3">
-                                            <li class="nav-item"><a href="category.html" class="nav-link">T-shirts</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Shirts</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Pants</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Accessories</a></li>
+                                            {% for sub_category in category.sub_category.all %}
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link">{{ sub_category.name }}</a>
+                                            </li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <h5>Shoes</h5>
-                                        <ul class="list-unstyled mb-3">
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Trainers</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Sandals</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Hiking shoes</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Casual</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <h5>Accessories</h5>
-                                        <ul class="list-unstyled mb-3">
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Trainers</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Sandals</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Hiking shoes</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Casual</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Hiking shoes</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Casual</a></li>
-                                        </ul>
-                                        <h5>Looks and trends</h5>
-                                        <ul class="list-unstyled mb-3">
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Trainers</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Sandals</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Hiking shoes</a></li>
-                                        </ul>
-                                    </div>
+                                    {% endfor %}
                                     <div class="col-md-6 col-lg-3">
                                         <div class="banner"><a href="#"><img src="{% static 'img/banner.jpg' %}" alt=""
-                                            class="img img-fluid"></a>
-                                        </div>
+                                                    class="img img-fluid"></a></div>
                                         <div class="banner"><a href="#"><img src="{% static 'img/banner2.jpg' %}" alt=""
-                                            class="img img-fluid"></a>
-                                        </div>
+                                                    class="img img-fluid"></a></div>
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </li>
+                    {% endfor %}
+                    <li class="nav-item"><a href="#" class="nav-link {% active_link '' strict=True %}">Blogs</a></li>
                     {% if request.user.is_authenticated %}
-                        <li class="nav-item"><a href="{% url 'account:profile' %}" class="nav-link {% active_link 'account:profile' strict=True %}">Account</a></li>
+                    <li class="nav-item"><a href="{% url 'account:profile' %}"
+                            class="nav-link {% active_link 'account:profile' strict=True %}">Account</a></li>
                     {% endif %}
                 </ul>
                 <div class="navbar-buttons d-flex justify-content-end">
