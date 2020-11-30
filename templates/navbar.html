@@ -76,36 +76,39 @@
             </div>
             <div id="navigation" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a href="{% url 'store:home' %}"
-                            class="nav-link {% active_link 'store:home' strict=True %}">Home</a></li>
-                    {% for whom in whoms %}
-                    <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown"
-                            data-delay="200" class="dropdown-toggle nav-link">{{ whom.whom }}<b class="caret"></b></a>
-                        <ul class="dropdown-menu megamenu">
-                            <li>
-                                <div class="row">
-                                    {% for category in whom.for_whom.all %}
-                                    <div class="col-md-6 col-lg-3">
-                                        <h5>{{ category.name }}</h5>
-                                        <ul class="list-unstyled mb-3">
-                                            {% for sub_category in category.sub_category.all %}
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">{{ sub_category.name }}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                    {% endfor %}
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="banner"><a href="#"><img src="{% static 'img/banner.jpg' %}" alt=""
-                                                    class="img img-fluid"></a></div>
-                                        <div class="banner"><a href="#"><img src="{% static 'img/banner2.jpg' %}" alt=""
-                                                    class="img img-fluid"></a></div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                    <li class="nav-item">
+                        <a href="{% url 'store:home' %}" class="nav-link {% active_link 'store:home' strict=True %}">Home</a>
                     </li>
+                    {% for whom in whoms %}
+                        <li class="nav-item dropdown menu-large">
+                            <a href="" data-toggle="dropdown" data-hover="dropdown"
+                                data-delay="200" class="dropdown-toggle nav-link">{{ whom.whom }}<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu megamenu">
+                                <li>
+                                    <div class="row">
+                                        {% for category in whom.for_whom.all %}
+                                            <div class="col-md-6 col-lg-3">
+                                                <h5>{{ category.name }}</h5>
+                                                <ul class="list-unstyled mb-3">
+                                                    {% for sub_category in category.sub_category.all %}
+                                                        <li class="nav-item">
+                                                            <a href="{% url 'store:product_list' pk=sub_category.pk %}" class="nav-link {% active_link 'store:product_list' strict=True %}">{{ sub_category.name }}</a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endfor %}
+                                        <!-- <div class="col-md-6 col-lg-3">
+                                            <div class="banner"><a href="#"><img src="{% static 'img/banner.jpg' %}" alt=""
+                                                        class="img img-fluid"></a></div>
+                                            <div class="banner"><a href="#"><img src="{% static 'img/banner2.jpg' %}" alt=""
+                                                        class="img img-fluid"></a></div>
+                                        </div> -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
                     {% endfor %}
                     <li class="nav-item"><a href="#" class="nav-link {% active_link '' strict=True %}">Blogs</a></li>
                     {% if request.user.is_authenticated %}

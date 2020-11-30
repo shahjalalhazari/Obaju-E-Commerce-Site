@@ -23,19 +23,19 @@
 	<!-- navbar-->
 	{% include 'navbar.html' %}
 
-    <!-- messages -->
-    <div class="messages container">
-        {% if messages %}
-            {% for message in messages %}
-                <div {% if message.tags %} class="alert alert-{{ message.tags }} {% endif %}" role="alert">
-                    {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
+	<!-- messages -->
+	<div class="messages container">
+		{% if messages %}
+		{% for message in messages %}
+		<div {% if message.tags %} class="alert alert-{{ message.tags }} {% endif %}" role="alert">
+			{{ message }}
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		{% endfor %}
+		{% endif %}
+	</div>
 	<!-- messages end -->
 
 	<!-- Body Content -->
@@ -137,7 +137,7 @@
 		</div>
 	</div>
 	<!-- *** COPYRIGHT END ***-->
-	
+
 	<!-- JavaScript files-->
 	<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
 	<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -145,6 +145,5 @@
 	<script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
 	<script src="{% static 'vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js' %}"></script>
 	<script src="{% static 'js/front.js' %}"></script>
-</body>
 
 </html>

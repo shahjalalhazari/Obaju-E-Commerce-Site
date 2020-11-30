@@ -41,7 +41,13 @@ class Product(models.Model):
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='product', default="")
     description = models.TextField()
     price = models.FloatField()
-    old_price = models.FloatField(default=0.00)
+    old_price = models.FloatField(blank=True, null=True)
+    #EXTRA IMAGE FIELDS
+    img_1 = models.ImageField(upload_to="ProductImg", blank=True, null=True)
+    img_2 = models.ImageField(upload_to="ProductImg", blank=True, null=True)
+    img_3 = models.ImageField(upload_to="ProductImg", blank=True, null=True)
+    img_4 = models.ImageField(upload_to="ProductImg", blank=True, null=True)
+    img_5 = models.ImageField(upload_to="ProductImg", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
