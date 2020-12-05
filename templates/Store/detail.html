@@ -12,20 +12,367 @@
 					<!-- breadcrumb-->
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="{% url 'store:home' %}">Home</a></li>
+							<li class="breadcrumb-item">
+								<a href="{% url 'store:home' %}">Home</a>
+							</li>
 							<li class="breadcrumb-item">{{ product.sub_category.category.for_whom.whom }}</li>
 							<li class="breadcrumb-item">{{ product.sub_category.category.name }}</li>
-							<li class="breadcrumb-item"><a href="{% url 'store:product_list' pk=product.sub_category.pk %}">{{ product.sub_category.name }}</a></li>
+							<li class="breadcrumb-item">
+								<a
+									href="{% url 'store:product_list' pk=product.sub_category.pk %}">{{ product.sub_category.name }}</a>
+							</li>
 							<li aria-current="page" class="breadcrumb-item active">{{ product.title }}</li>
 						</ol>
 					</nav>
 				</div>
-				<!-- <div class="col-lg-3 order-2 order-lg-1">
-					<!--
-              		*** MENUS AND FILTERS ***
-					_________________________________________________________
-				-->
-					<!-- <div class="card sidebar-menu mb-4">
+
+				<div class="col-lg-12 order-1 order-lg-2">
+					<div id="productMain" class="row">
+						<div class="col-md-5">
+							<div data-slider-id="1" class="owl-carousel shop-detail-carousel">
+								<div class="item">
+									<img src="/media/{{ product.main_image }}" alt="{{ product.title }}"
+										class="img-fluid">
+								</div>
+								{% if product.img_1 %}
+								<div class="item">
+									<img src="/media/{{ product.img_1 }}" alt="{{ product.title }}" class="img-fluid">
+								</div>
+								{% elif product.img_2 %}
+								<div class="item">
+									<img src="/media/{{ product.img_2 }}" alt="{{ product.title }}" class="img-fluid">
+								</div>
+								{% elif product.img_3 %}
+								<div class="item">
+									<img src="/media/{{ product.img_3 }}" alt="{{ product.title }}" class="img-fluid">
+								</div>
+								{% elif product.img_4 %}
+								<div class="item">
+									<img src="/media/{{ product.img_4 }}" alt="{{ product.title }}" class="img-fluid">
+								</div>
+								{% elif product.img_5 %}
+								<div class="item">
+									<img src="/media/{{ product.img_5 }}" alt="{{ product.title }}" class="img-fluid">
+								</div>
+								{% endif %}
+							</div>
+							<div class="ribbon sale">
+								<div class="theribbon">SALE</div>
+								<div class="ribbon-background"></div>
+							</div>
+							<!-- /.ribbon-->
+							<div class="ribbon new">
+								<div class="theribbon">NEW</div>
+								<div class="ribbon-background"></div>
+							</div>
+							<!-- /.ribbon-->
+						</div>
+						<div class="col-md-7">
+							<div class="box">
+								<h1 class="text-center">{{ product.title }}</h1>
+								<p class="goToDescription">
+									<a href="#details" class="scroll-to">Scroll to product details, material &amp; care
+										and sizing</a>
+								</p>
+								<p class="price">
+									<del style="color: #999;">
+										{% if product.old_price %}${{ product.old_price }}{% endif %}
+									</del>
+									${{ product.price }}
+								</p>
+								<p class="text-center buttons">
+									<a href="#" class="btn btn-primary">
+										<i class="fa fa-shopping-cart"></i> Add to cart
+									</a>
+									<a href="#" class="btn btn-outline-primary">
+										<i class="fa fa-heart"></i> Add to wishlist
+									</a>
+								</p>
+							</div>
+							<div data-slider-id="1" class="owl-thumbs">
+								<button class="owl-thumb-item">
+									<img src="/media/{{ product.main_image }}" alt="{{ product.title }}"
+										class="img-fluid">
+								</button>
+								{% if product.img_1 %}
+								<button class="owl-thumb-item">
+									<img src="/media/{{ product.img_1 }}" alt="{{ product.title }}" class="img-fluid">
+								</button>
+								{% elif product.img_2 %}
+								<button class="owl-thumb-item">
+									<img src="/media/{{ product.img_2 }}" alt="{{ product.title }}" class="img-fluid">
+								</button>
+								{% elif product.img_3 %}
+								<button class="owl-thumb-item">
+									<img src="/media/{{ product.img_3 }}" alt="{{ product.title }}" class="img-fluid">
+								</button>
+								{% elif product.img_4 %}
+								<button class="owl-thumb-item">
+									<img src="/media/{{ product.img_4 }}" alt="{{ product.title }}" class="img-fluid">
+								</button>
+								{% elif product.img_5 %}
+								<button class="owl-thumb-item">
+									<img src="/media/{{ product.img_5 }}" alt="{{ product.title }}" class="img-fluid">
+								</button>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="box col-lg-12 order-1 order-lg-2">
+					<div id="details">
+						<ul class="nav nav-pills mb-3 text-uppercase" id="pills-tab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-detail"
+									role="tab" aria-controls="pills-home" aria-selected="true">Details</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-review"
+									role="tab" aria-controls="pills-profile" aria-selected="false">Reviews (3)</a>
+							</li>
+						</ul>
+						<hr>
+						<div class="tab-content pt-2 pl-1" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="pills-detail" role="tabpanel"
+								aria-labelledby="pills-home-tab">
+								<p>{{ product.description|linebreaks }}</p>
+							</div>
+							<div class="tab-pane fade" id="pills-review" role="tabpanel"
+								aria-labelledby="pills-profile-tab">
+								<div class="row">
+									<div class="col-lg-7 col-sm-12">
+										<div class="card border-primary review-block">
+											<div class="card-body">
+												<p class="review-block-header">
+													<strong>Shahjalal Hazari</strong> / <span class="text-secondary text-muted">Dec 01, 2020</span>
+													<span class="float-right stars"><i class="text-warning far fa-star"></i></span>
+													<span class="float-right stars"><i class="text-warning fas fa-star"></i></span>
+													<span class="float-right stars"><i class="text-warning fas fa-star"></i></span>
+													<span class="float-right stars"><i class="text-warning fas fa-star"></i></span>
+													<span class="float-right stars"><i class="text-warning fas fa-star"></i></span>
+												</p>
+												<p class="title">Lorem Ipsum is simply dummy</p>
+												<p class="comment">
+													Lorem Ipsum is simply dummy text of the pr make but also the leap
+													into electronic typesetting, remaining essentially unchanged. It was
+													popularised in the 1960s with the release of Letraset.
+												</p>
+											</div>
+										</div>
+										<div class="card border-primary review-block">
+											<div class="card-body">
+												<p class="review-block-header">
+													<strong>Shahjalal Hazari</strong> / <span
+														class="text-secondary text-muted">Dec 01, 2020</span>
+													<span class="float-right stars"><i
+															class="text-warning far fa-star"></i></span>
+													<span class="float-right stars"><i
+															class="text-warning fas fa-star"></i></span>
+													<span class="float-right stars"><i
+															class="text-warning fas fa-star"></i></span>
+													<span class="float-right stars"><i
+															class="text-warning fas fa-star"></i></span>
+													<span class="float-right stars"><i
+															class="text-warning fas fa-star"></i></span>
+												</p>
+												<p class="title">Lorem Ipsum is simply dummy</p>
+												<p class="comment">Lorem Ipsum is simply dummy text of the pr make but
+													also the leap into
+													electronic typesetting, remaining essentially unchanged. It was
+													popularised
+													in the 1960s with the release of Letraset.</p>
+											</div>
+										</div>
+										<div class="card border-primary review-block">
+											<div class="card-body">
+												<p class="review-block-header">
+													<strong>Shahjalal Hazari</strong> / <span
+														class="text-secondary text-muted">Dec 01, 2020</span>
+													<span class="float-right stars"><i
+															class="text-warning far fa-star"></i></span>
+													<span class="float-right stars"><i
+															class="text-warning fas fa-star"></i></span>
+													<span class="float-right stars"><i
+															class="text-warning fas fa-star"></i></span>
+													<span class="float-right stars"><i
+															class="text-warning fas fa-star"></i></span>
+													<span class="float-right stars"><i
+															class="text-warning fas fa-star"></i></span>
+												</p>
+												<p class="title">Lorem Ipsum is simply dummy</p>
+												<p class="comment">Lorem Ipsum is simply dummy text of the pr make but
+													also the leap into
+													electronic typesetting, remaining essentially unchanged. It was
+													popularised
+													in the 1960s with the release of Letraset.</p>
+											</div>
+										</div>
+										<!-- pagination start -->
+										<nav aria-label="Page navigation example">
+											<ul class="pagination">
+												<li class="page-item">
+													<a class="page-link" href="#" aria-label="Previous">
+														<span aria-hidden="true">&laquo;</span>
+													</a>
+												</li>
+												<li class="page-item">
+													<a class="page-link" href="#">1</a>
+												</li>
+												<li class="page-item">
+													<a class="page-link" href="#" aria-label="Next">
+														<span aria-hidden="true">&raquo;</span>
+													</a>
+												</li>
+											</ul>
+										</nav>
+										<!-- pagination end -->
+									</div>
+									
+									<div class="col-lg-5 col-sm-12">
+										<div class="card border-primary">
+											<div class="card-header text-center bold text-uppercase">
+												<h5>Share your thoughts with others</h5>
+											</div>
+											<div class="card-body">
+												<form action="#" method="post" accept-charset="UTF-8">
+													{% csrf_token %}
+													<div class="form-group">
+														<label for="name">Name:</label>
+														<input class="form-control" type="text" name="name" id="name" required>
+													</div>
+													<div class="form-group">
+														<label for="subject">Subject:</label>
+														<input class="form-control" type="text" name="subject" id="subject" required>
+													</div>
+													<div class="form-group">
+														<label for="rating">Rating:</label>
+														<select class="form-control" name="rating" id="rating" required>
+															<option value="1">1 Star</option>
+															<option value="2">2 Stars</option>
+															<option value="3">3 Stars</option>
+															<option value="4">4 Stars</option>
+															<option value="5">5 Stars</option>
+														</select>
+													</div>
+													<div class="form-group">
+														<label for="comment">Comment:</label>
+														<textarea class="form-control" id="comment" name="comment" required rows="2"></textarea>
+													</div>
+													{% if request.user.is_authenticated %}
+														<button type="submit" class="btn btn-primary btn-block">Submit</button>
+													{% else %}
+														<p class="text-muted text-center text-uppercase">To submit your review please <a href="#" data-toggle="modal" data-target="#login-modal">login</a></p>
+													{% endif %}
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+{% endblock %}
+
+
+<select class="form-control" id="rate">
+	<option value="1star">1</option>
+	<option value="2stars">2</option>
+	<option value="3stars">3</option>
+	<option value="4stars">4</option>
+	<option value="5stars">5</option>
+</select>
+
+
+<div class="review-block">
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="review-block-name">
+				<h5>Shahjalal Hazari</h5>
+			</div>
+			<div class="review-block-date">
+				<p></p>
+			</div>
+		</div>
+		<div class="col-sm-9">
+			<div class="review-block-rate">
+
+				<i class="fas fa-star"></i>
+				<i class="fas fa-star"></i>
+				<i class="fas fa-star"></i>
+				<i class="far fa-star"></i>
+			</div>
+			<div class="review-block-title">this was nice in buy</div>
+			<div class="review-block-description">
+				this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was
+				nice in buy this was nice in buy this was nice in buy this was nice in buy
+			</div>
+		</div>
+	</div>
+	<hr>
+</div>
+
+<!-- *** MENUS AND FILTERS END ***-->
+<!-- <div class="banner">
+					<a href="#">
+						<img src="{% static 'img/banner.jpg' %}" alt="sales 2014" class="img-fluid">
+					</a>
+					</div> 
+				</div> -->
+
+
+
+<!-- <div class="card-header">
+					<h3 class="h4 card-title">Colours <a href="#" class="btn btn-sm btn-danger pull-right"><i
+								class="fa fa-times-circle"></i> Clear</a></h3>
+				</div>
+				<div class="card-body">
+					<form>
+						<div class="form-group">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"><span class="colour white"></span> White (14)
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"><span class="colour blue"></span> Blue (10)
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"><span class="colour green"></span> Green (20)
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"><span class="colour yellow"></span> Yellow (13)
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"><span class="colour red"></span> Red (10)
+								</label>
+							</div>
+						</div>
+						<button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i>
+							Apply</button>
+					</form>
+				</div>
+			</div> -->
+
+
+
+<!-- <div class="col-lg-3 order-2 order-lg-1">
+				
+				<div class="card sidebar-menu mb-4">
 						<div class="card-header">
 							<h3 class="h4 card-title">Categories</h3>
 						</div>
@@ -61,7 +408,7 @@
 							</ul>
 						</div>
 					</div> -->
-					<!-- <div class="card sidebar-menu mb-4">
+<!-- <div class="card sidebar-menu mb-4">
 						<div class="card-header">
 							<h3 class="h4 card-title">Brands <a href="#" class="btn btn-sm btn-danger pull-right"><i
 										class="fa fa-times-circle"></i> Clear</a></h3>
@@ -95,295 +442,189 @@
 							</form>
 						</div>
 					</div> -->
-					<!-- <div class="card sidebar-menu mb-4">
-						<div class="card-header">
-							<h3 class="h4 card-title">Colours <a href="#" class="btn btn-sm btn-danger pull-right"><i
-										class="fa fa-times-circle"></i> Clear</a></h3>
-						</div>
-						<div class="card-body">
-							<form>
-								<div class="form-group">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"><span class="colour white"></span> White (14)
-										</label>
+<!-- <div class="card sidebar-menu mb-4">
+
+
+
+
+
+
+							<!-- <form action="" method="POST">
+									<label for="name">Name:</label>
+									<input class="form-control" type="text" name="name" id="">
+									<label for="review_text">Review:</label>
+									<textarea class="" name="review_text" id=""></textarea>
+									<input type="submit" value="Submit">
+								</form> -->
+<!-- {% if request.user.is_authenticated %}
+									<p>U r logged in</p>
+								{% else %}
+									<p>U r not logged in.</p>
+								{% endif %} -->
+<!-- <div class="wrapper">
+									<input name="ratingRadio" type="radio" id="st1" value="1" />
+									<label for="st1"></label>
+									<input name="ratingRadio" type="radio" id="st2" value="2" />
+									<label for="st2"></label>
+									<input name="ratingRadio" type="radio" id="st3" value="3" />
+									<label for="st3"></label>
+									<input name="ratingRadio" type="radio" id="st4" value="4" />
+									<label for="st4"></label>
+									<input name="ratingRadio" type="radio" id="st5" value="5" />
+									<label for="st5"></label>
+								</div> -->
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="col-lg-12 order-1 order-lg-2">
+						<div class="row same-height-row">
+							<div class="col-md-3 col-sm-6">
+								<div class="box same-height">
+									<h3>You may also like these products</h3>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="product same-height">
+									<div class="flip-container">
+										<div class="flipper">
+											<div class="front">
+												<a href="detail.html">
+													<img src="{% static 'img/product2.jpg' %}" alt="" class="img-fluid">
+												</a>
+											</div>
+											<div class="back">
+												<a href="detail.html">
+													<img src="{% static 'img/product2_2.jpg' %}" alt="" class="img-fluid">
+												</a>
+											</div>
+										</div>
 									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"><span class="colour blue"></span> Blue (10)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"><span class="colour green"></span> Green (20)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"><span class="colour yellow"></span> Yellow (13)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"><span class="colour red"></span> Red (10)
-										</label>
+									<a href="detail.html" class="invisible">
+										<img src="{% static 'img/product2.jpg' %}" alt="" class="img-fluid">
+									</a>
+									<div class="text">
+										<h3>Fur coat</h3>
+										<p class="price">$143</p>
 									</div>
 								</div>
-								<button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i>
-									Apply</button>
-							</form>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="product same-height">
+									<div class="flip-container">
+										<div class="flipper">
+											<div class="front">
+												<a href="detail.html">
+													<img src="{% static 'img/product1.jpg' %}" alt="" class="img-fluid">
+												</a>
+											</div>
+											<div class="back">
+												<a href="detail.html">
+													<img src="{% static 'img/product1_2.jpg' %}" alt="" class="img-fluid">
+												</a>
+											</div>
+										</div>
+									</div>
+									<a href="detail.html" class="invisible">
+										<img src="{% static 'img/product1.jpg' %}" alt="" class="img-fluid">
+									</a>
+									<div class="text">
+										<h3>Fur coat</h3>
+										<p class="price">$143</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="product same-height">
+									<div class="flip-container">
+										<div class="flipper">
+											<div class="front">
+												<a href="detail.html">
+													<img src="{% static 'img/product3.jpg' %}" alt="" class="img-fluid">
+												</a>
+											</div>
+											<div class="back">
+												<a href="detail.html">
+													<img src="{% static 'img/product3_2.jpg' %}" alt="" class="img-fluid">
+												</a>
+											</div>
+										</div>
+									</div>
+									<a href="detail.html" class="invisible">
+										<img src="{% static 'img/product3.jpg' %}" alt="" class="img-fluid">
+									</a>
+									<div class="text">
+										<h3>Fur coat</h3>
+										<p class="price">$143</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row same-height-row">
+							<div class="col-md-3 col-sm-6">
+								<div class="box same-height">
+									<h3>Products viewed recently</h3>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="product same-height">
+									<div class="flip-container">
+										<div class="flipper">
+											<div class="front"><a href="detail.html"><img src="img/product2.jpg" alt=""
+														class="img-fluid"></a></div>
+											<div class="back"><a href="detail.html"><img src="img/product2_2.jpg" alt=""
+														class="img-fluid"></a></div>
+										</div>
+									</div><a href="detail.html" class="invisible"><img src="img/product2.jpg" alt=""
+											class="img-fluid"></a>
+									<div class="text">
+										<h3>Fur coat</h3>
+										<p class="price">$143</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="product same-height">
+									<div class="flip-container">
+										<div class="flipper">
+											<div class="front"><a href="detail.html"><img src="img/product1.jpg" alt=""
+														class="img-fluid"></a></div>
+											<div class="back"><a href="detail.html"><img src="img/product1_2.jpg" alt=""
+														class="img-fluid"></a></div>
+										</div>
+									</div><a href="detail.html" class="invisible"><img src="img/product1.jpg" alt=""
+											class="img-fluid"></a>
+									<div class="text">
+										<h3>Fur coat</h3>
+										<p class="price">$143</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="product same-height">
+									<div class="flip-container">
+										<div class="flipper">
+											<div class="front"><a href="detail.html"><img src="img/product3.jpg" alt=""
+														class="img-fluid"></a></div>
+											<div class="back"><a href="detail.html"><img src="img/product3_2.jpg" alt=""
+														class="img-fluid"></a></div>
+										</div>
+									</div><a href="detail.html" class="invisible"><img src="img/product3.jpg" alt=""
+											class="img-fluid"></a>
+									<div class="text">
+										<h3>Fur coat</h3>
+										<p class="price">$143</p>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div> -->
-					<!-- *** MENUS AND FILTERS END ***-->
-					<!-- <div class="banner"><a href="#"><img src="{% static 'img/banner.jpg' %}" alt="sales 2014" class="img-fluid"></a>
-					</div> 
-				</div> -->
-				<div class="col-lg-12 order-1 order-lg-2">
-					<div id="productMain" class="row">
-						<div class="col-md-5">
-							<div data-slider-id="1" class="owl-carousel shop-detail-carousel">
-								<div class="item">
-									<img src="/media/{{ product.main_image }}" alt="{{ product.title }}" class="img-fluid">
-								</div>
-								{% if product.img_1 %}
-									<div class="item">
-										<img src="/media/{{ product.img_1 }}" alt="{{ product.title }}" class="img-fluid">
-									</div>
-								{% endif %}
-								{% if product.img_2 %}
-									<div class="item">
-										<img src="/media/{{ product.img_2 }}" alt="{{ product.title }}" class="img-fluid">
-									</div>
-								{% endif %}
-								{% if product.img_3 %}
-									<div class="item">
-										<img src="/media/{{ product.img_3 }}" alt="{{ product.title }}" class="img-fluid">
-									</div>
-								{% endif %}
-								{% if product.img_4 %}
-									<div class="item">
-										<img src="/media/{{ product.img_4 }}" alt="{{ product.title }}" class="img-fluid">
-									</div>
-								{% endif %}
-								{% if product.img_5 %}
-									<div class="item">
-										<img src="/media/{{ product.img_5 }}" alt="{{ product.title }}" class="img-fluid">
-									</div>
-								{% endif %}
-							</div>
-							<div class="ribbon sale">
-								<div class="theribbon">SALE</div>
-								<div class="ribbon-background"></div>
-							</div>
-							<!-- /.ribbon-->
-							<div class="ribbon new">
-								<div class="theribbon">NEW</div>
-								<div class="ribbon-background"></div>
-							</div>
-							<!-- /.ribbon-->
-						</div>
-						<div class="col-md-7">
-							<div class="box">
-								<h1 class="text-center">{{ product.title }}</h1>
-								<p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product
-										details, material &amp; care and sizing</a></p>
-								<p class="price">
-									<del style="color: #999;">{% if product.old_price %}${{ product.old_price }}{% endif %}</del>
-									${{ product.price }}
-								</p>
-								<p class="text-center buttons"><a href="basket.html" class="btn btn-primary"><i
-											class="fa fa-shopping-cart"></i> Add to cart</a><a href="basket.html"
-										class="btn btn-outline-primary"><i class="fa fa-heart"></i> Add to wishlist</a>
-								</p>
-							</div>
-							<div data-slider-id="1" class="owl-thumbs">
-								<button class="owl-thumb-item">
-									<img src="/media/{{ product.main_image }}" alt="{{ product.title }}" class="img-fluid">
-								</button>
-								{% if product.img_1 %}
-									<button class="owl-thumb-item">
-										<img src="/media/{{ product.img_1 }}" alt="{{ product.title }}" class="img-fluid">
-									</button>
-								{% endif %}
-								{% if product.img_2 %}
-									<button class="owl-thumb-item">
-										<img src="/media/{{ product.img_2 }}" alt="{{ product.title }}" class="img-fluid">
-									</button>
-								{% endif %}
-								{% if product.img_3 %}
-									<button class="owl-thumb-item">
-										<img src="/media/{{ product.img_3 }}" alt="{{ product.title }}" class="img-fluid">
-									</button>
-								{% endif %}
-								{% if product.img_4 %}
-									<button class="owl-thumb-item">
-										<img src="/media/{{ product.img_4 }}" alt="{{ product.title }}" class="img-fluid">
-									</button>
-								{% endif %}
-								{% if product.img_5 %}
-									<button class="owl-thumb-item">
-										<img src="/media/{{ product.img_5 }}" alt="{{ product.title }}" class="img-fluid">
-									</button>
-								{% endif %}
-							</div>
-						</div>
-					</div>
-					<div id="details" class="box">
-						<h4>Product details</h4>
-						<p>{{ product.description|linebreaks }}</p>
-						<!-- <p>White lace top, woven, has a round neck, short sleeves, has knitted lining attached</p>
-						<h4>Material &amp; care</h4>
-						<ul>
-							<li>Polyester</li>
-							<li>Machine wash</li>
-						</ul>
-						<h4>Size &amp; Fit</h4>
-						<ul>
-							<li>Regular fit</li>
-							<li>The model (height 5'8" and chest 33") is wearing a size S</li>
-						</ul>
-						<blockquote>
-							<p><em>Define style this season with Armani's new range of trendy tops, crafted with
-									intricate details. Create a chic statement look by teaming this lace number with
-									skinny jeans and pumps.</em></p>
-						</blockquote>
-						<hr>
-						<div class="social">
-							<h4>Show it to your friends</h4>
-							<p><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#"
-									class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#"
-									class="external twitter"><i class="fa fa-twitter"></i></a><a href="#"
-									class="email"><i class="fa fa-envelope"></i></a></p>
-						</div> -->
-					</div>
-					<div class="row same-height-row">
-						<div class="col-md-3 col-sm-6">
-							<div class="box same-height">
-								<h3>You may also like these products</h3>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<div class="product same-height">
-								<div class="flip-container">
-									<div class="flipper">
-										<div class="front"><a href="detail.html"><img src="img/product2.jpg" alt=""
-													class="img-fluid"></a></div>
-										<div class="back"><a href="detail.html"><img src="img/product2_2.jpg" alt=""
-													class="img-fluid"></a></div>
-									</div>
-								</div><a href="detail.html" class="invisible"><img src="img/product2.jpg" alt=""
-										class="img-fluid"></a>
-								<div class="text">
-									<h3>Fur coat</h3>
-									<p class="price">$143</p>
-								</div>
-							</div>
-							<!-- /.product-->
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<div class="product same-height">
-								<div class="flip-container">
-									<div class="flipper">
-										<div class="front"><a href="detail.html"><img src="img/product1.jpg" alt=""
-													class="img-fluid"></a></div>
-										<div class="back"><a href="detail.html"><img src="img/product1_2.jpg" alt=""
-													class="img-fluid"></a></div>
-									</div>
-								</div><a href="detail.html" class="invisible"><img src="img/product1.jpg" alt=""
-										class="img-fluid"></a>
-								<div class="text">
-									<h3>Fur coat</h3>
-									<p class="price">$143</p>
-								</div>
-							</div>
-							<!-- /.product-->
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<div class="product same-height">
-								<div class="flip-container">
-									<div class="flipper">
-										<div class="front"><a href="detail.html"><img src="img/product3.jpg" alt=""
-													class="img-fluid"></a></div>
-										<div class="back"><a href="detail.html"><img src="img/product3_2.jpg" alt=""
-													class="img-fluid"></a></div>
-									</div>
-								</div><a href="detail.html" class="invisible"><img src="img/product3.jpg" alt=""
-										class="img-fluid"></a>
-								<div class="text">
-									<h3>Fur coat</h3>
-									<p class="price">$143</p>
-								</div>
-							</div>
-							<!-- /.product-->
-						</div>
-					</div>
-					<div class="row same-height-row">
-						<div class="col-md-3 col-sm-6">
-							<div class="box same-height">
-								<h3>Products viewed recently</h3>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<div class="product same-height">
-								<div class="flip-container">
-									<div class="flipper">
-										<div class="front"><a href="detail.html"><img src="img/product2.jpg" alt=""
-													class="img-fluid"></a></div>
-										<div class="back"><a href="detail.html"><img src="img/product2_2.jpg" alt=""
-													class="img-fluid"></a></div>
-									</div>
-								</div><a href="detail.html" class="invisible"><img src="img/product2.jpg" alt=""
-										class="img-fluid"></a>
-								<div class="text">
-									<h3>Fur coat</h3>
-									<p class="price">$143</p>
-								</div>
-							</div>
-							<!-- /.product-->
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<div class="product same-height">
-								<div class="flip-container">
-									<div class="flipper">
-										<div class="front"><a href="detail.html"><img src="img/product1.jpg" alt=""
-													class="img-fluid"></a></div>
-										<div class="back"><a href="detail.html"><img src="img/product1_2.jpg" alt=""
-													class="img-fluid"></a></div>
-									</div>
-								</div><a href="detail.html" class="invisible"><img src="img/product1.jpg" alt=""
-										class="img-fluid"></a>
-								<div class="text">
-									<h3>Fur coat</h3>
-									<p class="price">$143</p>
-								</div>
-							</div>
-							<!-- /.product-->
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<div class="product same-height">
-								<div class="flip-container">
-									<div class="flipper">
-										<div class="front"><a href="detail.html"><img src="img/product3.jpg" alt=""
-													class="img-fluid"></a></div>
-										<div class="back"><a href="detail.html"><img src="img/product3_2.jpg" alt=""
-													class="img-fluid"></a></div>
-									</div>
-								</div><a href="detail.html" class="invisible"><img src="img/product3.jpg" alt=""
-										class="img-fluid"></a>
-								<div class="text">
-									<h3>Fur coat</h3>
-									<p class="price">$143</p>
-								</div>
-							</div>
-							<!-- /.product-->
-						</div>
-					</div>
-				</div>
-				<!-- /.col-md-9-->
-			</div>
-		</div>
-	</div>
-</div>
 
-
-{% endblock %}
+<!-- /.col-md-9-->

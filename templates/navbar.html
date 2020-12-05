@@ -4,19 +4,27 @@
     <div id="top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">+880 1624
-                        677501</a><a href="#" class="ml-1">01/45, Pennai, Gouripur, Daudkandi, Comilla - 3517
-                        Bangladesh</a></div>
+                <div class="col-lg-8 offer mb-3 mb-lg-0">
+                    <a href="#" class="btn btn-success btn-sm">+880 1624 677501</a>
+                    <a href="#" class="ml-1">01/45, Pennai, Gouripur, Daudkandi, Comilla - 3517 Bangladesh</a>
+                </div>
                 <div class="col-lg-4 text-center text-lg-right">
                     <ul class="menu list-inline mb-0">
                         {% if request.user.is_authenticated %}
-                        <li class="list-inline-item"><a href="{% url 'account:logout' %}">Logout</a></li>
+                        <li class="list-inline-item">
+                            <a href="{% url 'account:logout' %}">Logout</a>
+                        </li>
                         {% else %}
-                        <li class="list-inline-item"><a href="#" data-toggle="modal"
-                                data-target="#login-modal">Login</a></li>
-                        <li class="list-inline-item"><a href="{% url 'account:signup' %}">Register</a></li>
+                        <li class="list-inline-item">
+                            <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                            </li>
+                        <li class="list-inline-item">
+                            <a href="{% url 'account:signup' %}">Register</a>
+                        </li>
                         {% endif %}
-                        <li class="list-inline-item"><a href="#">Contact</a></li>
+                        <li class="list-inline-item">
+                            <a href="#">Contact</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -55,24 +63,27 @@
                 </div>
             </div>
         </div>
-        <!-- *** TOP BAR END ***-->
-
-
     </div>
+
     <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="{% url 'store:home' %}" class="navbar-brand home"><img
-                    src="{% static 'img/logo.png' %}" alt="Obaju logo" class="d-none d-md-inline-block"><img
-                    src="{% static 'img/logo-small.png' %}" alt="Obaju logo" class="d-inline-block d-md-none"><span
-                    class="sr-only">Obaju - go to
-                    homepage</span></a>
+        <div class="container">
+            <a href="{% url 'store:home' %}" class="navbar-brand home">
+                <img src="{% static 'img/logo.png' %}" alt="Obaju logo" class="d-none d-md-inline-block">
+                <img src="{% static 'img/logo-small.png' %}" alt="Obaju logo" class="d-inline-block d-md-none">
+                <span class="sr-only">Obaju - go to homepage</span>
+            </a>
             <div class="navbar-buttons">
-                <button type="button" data-toggle="collapse" data-target="#navigation"
-                    class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle
-                        navigation</span><i class="fa fa-align-justify"></i></button>
-                <button type="button" data-toggle="collapse" data-target="#search"
-                    class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i
-                        class="fa fa-search"></i></button><a href="basket.html"
-                    class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
+                <button type="button" data-toggle="collapse" data-target="#navigation" class="btn btn-outline-secondary navbar-toggler">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-align-justify"></i>
+                </button>
+                <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler">
+                    <span class="sr-only">Toggle search</span>
+                    <i lass="fa fa-search"></i>
+                </button>
+                <a href="#" class="btn btn-outline-secondary navbar-toggler">
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
             </div>
             <div id="navigation" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
@@ -81,8 +92,7 @@
                     </li>
                     {% for whom in whoms %}
                         <li class="nav-item dropdown menu-large">
-                            <a href="" data-toggle="dropdown" data-hover="dropdown"
-                                data-delay="200" class="dropdown-toggle nav-link">{{ whom.whom }}<b class="caret"></b>
+                            <a href="" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">{{ whom.whom }}<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu megamenu">
                                 <li>
@@ -110,20 +120,27 @@
                             </ul>
                         </li>
                     {% endfor %}
-                    <li class="nav-item"><a href="#" class="nav-link {% active_link '' strict=True %}">Blogs</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link {% active_link '' strict=True %}">Blogs</a>
+                    </li>
                     {% if request.user.is_authenticated %}
-                    <li class="nav-item"><a href="{% url 'account:profile' %}"
-                            class="nav-link {% active_link 'account:profile' strict=True %}">Account</a></li>
+                    <li class="nav-item">
+                        <a href="{% url 'account:profile' %}" class="nav-link {% active_link 'account:profile' strict=True %}">Account</a>
+                    </li>
                     {% endif %}
                 </ul>
                 <div class="navbar-buttons d-flex justify-content-end">
                     <!-- /.nav-collapse-->
-                    <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse"
-                        href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span
-                            class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
-                    <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="basket.html"
-                            class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>3 items in
-                                cart</span></a></div>
+                    <div id="search-not-mobile" class="navbar-collapse collapse"></div>
+                    <a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block">
+                        <span class="sr-only">Toggle search</span>
+                        <i class="fa fa-search"></i>
+                    </a>
+                    <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block">
+                        <a href="#" class="btn btn-primary navbar-btn">
+                            <i class="fa fa-shopping-cart"></i><span>3 items in cart</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

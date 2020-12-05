@@ -1,1 +1,30 @@
-/* your styles go here */
+.review-block{
+    margin-bottom: 10px;
+}
+.bold{
+    font-weight: bold;
+}
+.stars{
+    font-size:18px;
+}
+.title{
+    font-weight: bold;
+    margin: 0;
+    padding: 5px 0px 0px 0px;
+}
+.comment{
+    margin: 0;
+    padding: 0;
+}
+.review-block-header{
+    padding: 0;
+    margin: 0;
+}
+.card-header h5{
+    padding-top: 10px;
+    font-weight: bold;
+}
+.card .card-body form p{
+    padding: 0;
+    margin: 0;
+}
