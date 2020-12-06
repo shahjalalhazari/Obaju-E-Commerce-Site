@@ -146,35 +146,11 @@
 											<div class="card-body">
 												<p class="review-block-header">
 													<strong>Shahjalal Hazari</strong> / <span class="text-secondary text-muted">Dec 01, 2020</span>
-													<span class="float-right stars"><i class="text-warning far fa-star"></i></span>
-													<span class="float-right stars"><i class="text-warning fas fa-star"></i></span>
-													<span class="float-right stars"><i class="text-warning fas fa-star"></i></span>
-													<span class="float-right stars"><i class="text-warning fas fa-star"></i></span>
-													<span class="float-right stars"><i class="text-warning fas fa-star"></i></span>
-												</p>
-												<p class="title">Lorem Ipsum is simply dummy</p>
-												<p class="comment">
-													Lorem Ipsum is simply dummy text of the pr make but also the leap
-													into electronic typesetting, remaining essentially unchanged. It was
-													popularised in the 1960s with the release of Letraset.
-												</p>
-											</div>
-										</div>
-										<div class="card border-primary review-block">
-											<div class="card-body">
-												<p class="review-block-header">
-													<strong>Shahjalal Hazari</strong> / <span
-														class="text-secondary text-muted">Dec 01, 2020</span>
-													<span class="float-right stars"><i
-															class="text-warning far fa-star"></i></span>
-													<span class="float-right stars"><i
-															class="text-warning fas fa-star"></i></span>
-													<span class="float-right stars"><i
-															class="text-warning fas fa-star"></i></span>
-													<span class="float-right stars"><i
-															class="text-warning fas fa-star"></i></span>
-													<span class="float-right stars"><i
-															class="text-warning fas fa-star"></i></span>
+													<span class="float-right stars"><i class="far fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
 												</p>
 												<p class="title">Lorem Ipsum is simply dummy</p>
 												<p class="comment">Lorem Ipsum is simply dummy text of the pr make but
@@ -187,18 +163,30 @@
 										<div class="card border-primary review-block">
 											<div class="card-body">
 												<p class="review-block-header">
-													<strong>Shahjalal Hazari</strong> / <span
-														class="text-secondary text-muted">Dec 01, 2020</span>
-													<span class="float-right stars"><i
-															class="text-warning far fa-star"></i></span>
-													<span class="float-right stars"><i
-															class="text-warning fas fa-star"></i></span>
-													<span class="float-right stars"><i
-															class="text-warning fas fa-star"></i></span>
-													<span class="float-right stars"><i
-															class="text-warning fas fa-star"></i></span>
-													<span class="float-right stars"><i
-															class="text-warning fas fa-star"></i></span>
+													<strong>Shahjalal Hazari</strong> / <span class="text-secondary text-muted">Dec 01, 2020</span>
+													<span class="float-right stars"><i class="far fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
+												</p>
+												<p class="title">Lorem Ipsum is simply dummy</p>
+												<p class="comment">Lorem Ipsum is simply dummy text of the pr make but
+													also the leap into
+													electronic typesetting, remaining essentially unchanged. It was
+													popularised
+													in the 1960s with the release of Letraset.</p>
+											</div>
+										</div>
+										<div class="card border-primary review-block">
+											<div class="card-body">
+												<p class="review-block-header">
+													<strong>Shahjalal Hazari</strong> / <span class="text-secondary text-muted">Dec 01, 2020</span>
+													<span class="float-right stars"><i class="far fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
+													<span class="float-right stars"><i class="fas fa-star"></i></span>
 												</p>
 												<p class="title">Lorem Ipsum is simply dummy</p>
 												<p class="comment">Lorem Ipsum is simply dummy text of the pr make but
@@ -235,7 +223,7 @@
 												<h5>Share your thoughts with others</h5>
 											</div>
 											<div class="card-body">
-												<form action="#" method="post" accept-charset="UTF-8">
+												<form action="{% url 'store:add_review' pk=product.pk %}" method="post" accept-charset="UTF-8">
 													{% csrf_token %}
 													<div class="form-group">
 														<label for="name">Name:</label>
@@ -245,15 +233,18 @@
 														<label for="subject">Subject:</label>
 														<input class="form-control" type="text" name="subject" id="subject" required>
 													</div>
-													<div class="form-group">
-														<label for="rating">Rating:</label>
-														<select class="form-control" name="rating" id="rating" required>
-															<option value="1">1 Star</option>
-															<option value="2">2 Stars</option>
-															<option value="3">3 Stars</option>
-															<option value="4">4 Stars</option>
-															<option value="5">5 Stars</option>
-														</select>
+													<label>Rating:</label>
+													<div class="rating">
+														<input type="radio" name="rating" value="5" id="5">
+														<label for="5">☆</label>
+														<input type="radio" name="rating" value="4" id="4">
+														<label for="4">☆</label>
+														<input type="radio" name="rating" value="3" id="3">
+														<label for="3">☆</label>
+														<input type="radio" name="rating" value="2" id="2">
+														<label for="2">☆</label>
+														<input type="radio" name="rating" value="1" id="1">
+														<label for="1">☆</label>
 													</div>
 													<div class="form-group">
 														<label for="comment">Comment:</label>
@@ -261,6 +252,9 @@
 													</div>
 													{% if request.user.is_authenticated %}
 														<button type="submit" class="btn btn-primary btn-block">Submit</button>
+														<div class="text-muted text-center">
+															<small>Once you submit this form, you can't change it.</small>
+														</div>
 													{% else %}
 														<p class="text-muted text-center text-uppercase">To submit your review please <a href="#" data-toggle="modal" data-target="#login-modal">login</a></p>
 													{% endif %}
@@ -281,17 +275,19 @@
 
 {% endblock %}
 
+<!-- <div class="form-group">
+	<label for="rating">Rating:</label>
+	<select class="form-control" name="rating" id="rating" required>
+		<option value="1">1 Star</option>
+		<option value="2">2 Stars</option>
+		<option value="3">3 Stars</option>
+		<option value="4">4 Stars</option>
+		<option value="5">5 Stars</option>
+	</select>
+</div> -->
 
-<select class="form-control" id="rate">
-	<option value="1star">1</option>
-	<option value="2stars">2</option>
-	<option value="3stars">3</option>
-	<option value="4stars">4</option>
-	<option value="5stars">5</option>
-</select>
 
-
-<div class="review-block">
+<!-- <div class="review-block">
 	<div class="row">
 		<div class="col-sm-3">
 			<div class="review-block-name">
@@ -317,7 +313,7 @@
 		</div>
 	</div>
 	<hr>
-</div>
+</div> -->
 
 <!-- *** MENUS AND FILTERS END ***-->
 <!-- <div class="banner">
