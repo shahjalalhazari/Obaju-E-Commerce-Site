@@ -18,8 +18,7 @@
 							<li class="breadcrumb-item">{{ product.sub_category.category.for_whom.whom }}</li>
 							<li class="breadcrumb-item">{{ product.sub_category.category.name }}</li>
 							<li class="breadcrumb-item">
-								<a
-									href="{% url 'store:product_list' pk=product.sub_category.pk %}">{{ product.sub_category.name }}</a>
+								<a href="{% url 'store:product_list' pk=product.sub_category.pk %}">{{ product.sub_category.name }}</a>
 							</li>
 							<li aria-current="page" class="breadcrumb-item active">{{ product.title }}</li>
 						</ol>
@@ -35,25 +34,25 @@
 										class="img-fluid">
 								</div>
 								{% if product.img_1 %}
-								<div class="item">
-									<img src="/media/{{ product.img_1 }}" alt="{{ product.title }}" class="img-fluid">
-								</div>
+									<div class="item">
+										<img src="/media/{{ product.img_1 }}" alt="{{ product.title }}" class="img-fluid">
+									</div>
 								{% elif product.img_2 %}
-								<div class="item">
-									<img src="/media/{{ product.img_2 }}" alt="{{ product.title }}" class="img-fluid">
-								</div>
+									<div class="item">
+										<img src="/media/{{ product.img_2 }}" alt="{{ product.title }}" class="img-fluid">
+									</div>
 								{% elif product.img_3 %}
-								<div class="item">
-									<img src="/media/{{ product.img_3 }}" alt="{{ product.title }}" class="img-fluid">
-								</div>
+									<div class="item">
+										<img src="/media/{{ product.img_3 }}" alt="{{ product.title }}" class="img-fluid">
+									</div>
 								{% elif product.img_4 %}
-								<div class="item">
-									<img src="/media/{{ product.img_4 }}" alt="{{ product.title }}" class="img-fluid">
-								</div>
+									<div class="item">
+										<img src="/media/{{ product.img_4 }}" alt="{{ product.title }}" class="img-fluid">
+									</div>
 								{% elif product.img_5 %}
-								<div class="item">
-									<img src="/media/{{ product.img_5 }}" alt="{{ product.title }}" class="img-fluid">
-								</div>
+									<div class="item">
+										<img src="/media/{{ product.img_5 }}" alt="{{ product.title }}" class="img-fluid">
+									</div>
 								{% endif %}
 							</div>
 							<div class="ribbon sale">
@@ -71,8 +70,7 @@
 							<div class="box">
 								<h1 class="text-center">{{ product.title }}</h1>
 								<p class="goToDescription">
-									<a href="#details" class="scroll-to">Scroll to product details, material &amp; care
-										and sizing</a>
+									<a href="#details" class="scroll-to">Scroll to product details, material, care &amp; sizing, review</a>
 								</p>
 								<p class="price">
 									<del style="color: #999;">
@@ -129,100 +127,83 @@
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-review"
-									role="tab" aria-controls="pills-profile" aria-selected="false">Reviews (3)</a>
+									role="tab" aria-controls="pills-profile" aria-selected="false">Reviews ({{ product.review.count }})</a>
 							</li>
 						</ul>
 						<hr>
 						<div class="tab-content pt-2 pl-1" id="pills-tabContent">
 							<div class="tab-pane fade show active" id="pills-detail" role="tabpanel"
 								aria-labelledby="pills-home-tab">
-								<p>{{ product.description|linebreaks }}</p>
+								<p>{{ product.description | linebreaks }}</p>
 							</div>
 							<div class="tab-pane fade" id="pills-review" role="tabpanel"
 								aria-labelledby="pills-profile-tab">
 								<div class="row">
+									<!-- product review area start -->
 									<div class="col-lg-7 col-sm-12">
-										<div class="card border-primary review-block">
-											<div class="card-body">
-												<p class="review-block-header">
-													<strong>Shahjalal Hazari</strong> / <span class="text-secondary text-muted">Dec 01, 2020</span>
-													<span class="float-right stars"><i class="far fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-												</p>
-												<p class="title">Lorem Ipsum is simply dummy</p>
-												<p class="comment">Lorem Ipsum is simply dummy text of the pr make but
-													also the leap into
-													electronic typesetting, remaining essentially unchanged. It was
-													popularised
-													in the 1960s with the release of Letraset.</p>
-											</div>
-										</div>
-										<div class="card border-primary review-block">
-											<div class="card-body">
-												<p class="review-block-header">
-													<strong>Shahjalal Hazari</strong> / <span class="text-secondary text-muted">Dec 01, 2020</span>
-													<span class="float-right stars"><i class="far fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-												</p>
-												<p class="title">Lorem Ipsum is simply dummy</p>
-												<p class="comment">Lorem Ipsum is simply dummy text of the pr make but
-													also the leap into
-													electronic typesetting, remaining essentially unchanged. It was
-													popularised
-													in the 1960s with the release of Letraset.</p>
-											</div>
-										</div>
-										<div class="card border-primary review-block">
-											<div class="card-body">
-												<p class="review-block-header">
-													<strong>Shahjalal Hazari</strong> / <span class="text-secondary text-muted">Dec 01, 2020</span>
-													<span class="float-right stars"><i class="far fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-													<span class="float-right stars"><i class="fas fa-star"></i></span>
-												</p>
-												<p class="title">Lorem Ipsum is simply dummy</p>
-												<p class="comment">Lorem Ipsum is simply dummy text of the pr make but
-													also the leap into
-													electronic typesetting, remaining essentially unchanged. It was
-													popularised
-													in the 1960s with the release of Letraset.</p>
-											</div>
-										</div>
-										<!-- pagination start -->
-										<nav aria-label="Page navigation example">
-											<ul class="pagination">
-												<li class="page-item">
-													<a class="page-link" href="#" aria-label="Previous">
-														<span aria-hidden="true">&laquo;</span>
-													</a>
-												</li>
-												<li class="page-item">
-													<a class="page-link" href="#">1</a>
-												</li>
-												<li class="page-item">
-													<a class="page-link" href="#" aria-label="Next">
-														<span aria-hidden="true">&raquo;</span>
-													</a>
-												</li>
-											</ul>
-										</nav>
-										<!-- pagination end -->
+										{% if reviews %}
+											{% for review in reviews %}
+												<div class="card border-primary review-block">
+													<div class="card-body">
+														<p class="review-block-header">
+															<i class="far fa-user"></i> <strong>{{ review.name }}</strong> <i class="far fa-clock"></i> <span class="text-secondary text-muted">{{ review.created | date:"M d, Y" }}</span>
+															<span class="float-right stars">{% if review.rating < 5 %}<i class="far fa-star"></i>{% else %}<i class="fas fa-star"></i>{% endif %}</span>
+															<span class="float-right stars">{% if review.rating < 4 %}<i class="far fa-star"></i>{% else %}<i class="fas fa-star"></i>{% endif %}</span>
+															<span class="float-right stars">{% if review.rating < 3 %}<i class="far fa-star"></i>{% else %}<i class="fas fa-star"></i>{% endif %}</span>
+															<span class="float-right stars">{% if review.rating < 2 %}<i class="far fa-star"></i>{% else %}<i class="fas fa-star"></i>{% endif %}</span>
+															<span class="float-right stars">{% if review.rating < 1 %}<i class="far fa-star"></i>{% else %}<i class="fas fa-star"></i>{% endif %}</span>
+														</p>
+														<p class="title">{{ review.subject }}</p>
+														<p class="comment">{{ review.comment | linebreaks }}</p>
+													</div>
+												</div>
+											{% endfor %}
+											<!-- pagination start -->
+											{% if reviews.has_other_pages %}
+											<nav aria-label="Page navigation example">
+												<ul class="pagination">
+													{% if reviews.has_previous %}
+													<li class="page-item">
+														<a class="page-link"  href="?page={{ reviews.previous_page_number }}">&laquo;</a>
+													</li>
+													{% endif %}
+
+													{% for i in reviews.paginator.page_range %}
+													{% if reviews.number == i %}
+													<li class="page-item active">
+														<span class="page-link">{{ i }}
+															<span class="sr-only">(current)</span>
+														</span>
+													</li>
+													{% else %}
+													<li class="page-item">
+														<a class="page-link" href="?page={{ i }}">{{ i }}</a>
+													</li>
+													{% endif %}
+													{% endfor %}
+
+													{% if reviews.has_next %}
+													<li class="page-item">
+														<a class="page-link" href="?page={{ reviews.next_page_number }}">&raquo;</a>
+													</li>
+													{% endif %}
+												</ul>
+											</nav>
+											{% endif %}
+											<!-- pagination end -->
+										{% else %}
+										<h3>This product has no review.</h3>
+										{% endif %}
 									</div>
-									
+									<!-- product review area end -->
+
+									<!-- review form area start -->
 									<div class="col-lg-5 col-sm-12">
 										<div class="card border-primary">
 											<div class="card-header text-center bold text-uppercase">
 												<h5>Share your thoughts with others</h5>
 											</div>
-											<div class="card-body">
+											<div class="card-body text-uppercase">
 												<form action="{% url 'store:add_review' pk=product.pk %}" method="post" accept-charset="UTF-8">
 													{% csrf_token %}
 													<div class="form-group">
@@ -247,21 +228,22 @@
 														<label for="1">☆</label>
 													</div>
 													<div class="form-group">
-														<label for="comment">Comment:</label>
+														<label for="comment">Write about this product:</label>
 														<textarea class="form-control" id="comment" name="comment" required rows="2"></textarea>
 													</div>
 													{% if request.user.is_authenticated %}
-														<button type="submit" class="btn btn-primary btn-block">Submit</button>
+														<button type="submit" class="btn btn-primary btn-block text-uppercase">Submit</button>
 														<div class="text-muted text-center">
 															<small>Once you submit this form, you can't change it.</small>
 														</div>
 													{% else %}
-														<p class="text-muted text-center text-uppercase">To submit your review please <a href="#" data-toggle="modal" data-target="#login-modal">login</a></p>
+														<p class="text-muted text-center">To submit your review please <a href="#" data-toggle="modal" data-target="#login-modal">login</a></p>
 													{% endif %}
 												</form>
 											</div>
 										</div>
 									</div>
+									<!-- review form area end -->
 								</div>
 							</div>
 						</div>
@@ -274,46 +256,6 @@
 </div>
 
 {% endblock %}
-
-<!-- <div class="form-group">
-	<label for="rating">Rating:</label>
-	<select class="form-control" name="rating" id="rating" required>
-		<option value="1">1 Star</option>
-		<option value="2">2 Stars</option>
-		<option value="3">3 Stars</option>
-		<option value="4">4 Stars</option>
-		<option value="5">5 Stars</option>
-	</select>
-</div> -->
-
-
-<!-- <div class="review-block">
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="review-block-name">
-				<h5>Shahjalal Hazari</h5>
-			</div>
-			<div class="review-block-date">
-				<p></p>
-			</div>
-		</div>
-		<div class="col-sm-9">
-			<div class="review-block-rate">
-
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="far fa-star"></i>
-			</div>
-			<div class="review-block-title">this was nice in buy</div>
-			<div class="review-block-description">
-				this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was
-				nice in buy this was nice in buy this was nice in buy this was nice in buy
-			</div>
-		</div>
-	</div>
-	<hr>
-</div> -->
 
 <!-- *** MENUS AND FILTERS END ***-->
 <!-- <div class="banner">
@@ -437,43 +379,8 @@
 									Apply</button>
 							</form>
 						</div>
-					</div> -->
-<!-- <div class="card sidebar-menu mb-4">
-
-
-
-
-
-
-							<!-- <form action="" method="POST">
-									<label for="name">Name:</label>
-									<input class="form-control" type="text" name="name" id="">
-									<label for="review_text">Review:</label>
-									<textarea class="" name="review_text" id=""></textarea>
-									<input type="submit" value="Submit">
-								</form> -->
-<!-- {% if request.user.is_authenticated %}
-									<p>U r logged in</p>
-								{% else %}
-									<p>U r not logged in.</p>
-								{% endif %} -->
-<!-- <div class="wrapper">
-									<input name="ratingRadio" type="radio" id="st1" value="1" />
-									<label for="st1"></label>
-									<input name="ratingRadio" type="radio" id="st2" value="2" />
-									<label for="st2"></label>
-									<input name="ratingRadio" type="radio" id="st3" value="3" />
-									<label for="st3"></label>
-									<input name="ratingRadio" type="radio" id="st4" value="4" />
-									<label for="st4"></label>
-									<input name="ratingRadio" type="radio" id="st5" value="5" />
-									<label for="st5"></label>
-								</div> -->
-
-
-
-
-
+					</div>
+<div class="card sidebar-menu mb-4">-->
 
 
 

@@ -59,22 +59,12 @@ class Product(models.Model):
 
 # PRODUCT REVIEW MODEL
 class ProductReview(models.Model):
-    STATUS = (
-        ('True', 'True'),
-        ('False', 'False')
-    )
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='review')
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='review_user', default="")
     name = models.CharField(max_length=120)
     subject = models.CharField(max_length=264)
     rating = models.IntegerField(default=1)
     comment = models.TextField()
-    status = models.CharField(
-        max_length=5,
-        choices=STATUS,
-        default='False',
-        help_text=_("By default Status is False. If you want to show this review in your web page then make it True.")
-    )
     created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return "{} review '{}'".format(self.product, self.subject)
