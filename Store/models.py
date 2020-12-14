@@ -2,12 +2,15 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from Account.models import User
 
+
 # FOR WHOM MODEL
 class ForWhom(models.Model):
     whom = models.CharField(max_length=10)
     created = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.whom
+
     class Meta:
         verbose_name_plural = 'For Whom List'
 
@@ -18,8 +21,10 @@ class Category(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='CategoryImg', blank=True)
     created = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return "{} for {}".format(self.name, self.for_whom)
+
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -30,8 +35,10 @@ class SubCategory(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='SubCategoryImg', blank=True)
     created = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return "{} from {}".format(self.name, self.category)
+
     class Meta:
         verbose_name_plural = 'Sub-Categories'
 
@@ -44,15 +51,17 @@ class Product(models.Model):
     description = models.TextField()
     price = models.FloatField()
     old_price = models.FloatField(blank=True, null=True)
-    #EXTRA IMAGE FIELDS
+    # EXTRA IMAGE FIELDS
     img_1 = models.ImageField(upload_to="ProductImg", blank=True, null=True)
     img_2 = models.ImageField(upload_to="ProductImg", blank=True, null=True)
     img_3 = models.ImageField(upload_to="ProductImg", blank=True, null=True)
     img_4 = models.ImageField(upload_to="ProductImg", blank=True, null=True)
     img_5 = models.ImageField(upload_to="ProductImg", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.title
+
     class Meta:
         ordering = ['-created']
 
@@ -60,14 +69,16 @@ class Product(models.Model):
 # PRODUCT REVIEW MODEL
 class ProductReview(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='review')
-    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='review_user', default="")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='review_user', default="")
     name = models.CharField(max_length=120)
     subject = models.CharField(max_length=264)
     rating = models.IntegerField(default=1)
     comment = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return "{} review '{}'".format(self.product, self.subject)
+
     class Meta:
         ordering = ['-created']
         verbose_name_plural = 'Product Reviews'

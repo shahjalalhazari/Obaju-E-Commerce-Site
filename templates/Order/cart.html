@@ -49,13 +49,13 @@
                                                 <a href="{% url 'store:product_detail' pk=cart.product.pk %}">{{ cart.product.title }}</a>
                                             </td>
                                             <td>
-                                                <a href="#">
+                                                <a href="{% url 'order:dec_qty' pk=cart.product.pk %}">
                                                     <snap class="badge light">
                                                         <i class="fas fa-minus"></i>
                                                     </snap>
                                                 </a>
                                                 {{ cart.quantity }}
-                                                <a href="#">
+                                                <a href="{% url 'order:inc_qty' pk=cart.product.pk %}">
                                                     <snap class="badge light">
                                                         <i class="fas fa-plus"></i>
                                                     </snap>
