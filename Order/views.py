@@ -17,18 +17,18 @@ def add_to_cart(request, pk):
         if order.orderitems.filter(product=product).exists():
             order_item[0].quantity += 1
             order_item[0].save()
-            messages.info(request, "This item quantity was updated!")
-            return HttpResponseRedirect(reverse('store:product_detail', kwargs={'pk': product.pk}))
+            messages.info(request, "This item quantity has been updated!")
+            return HttpResponseRedirect(reverse('store:product_detail', kwargs={'pk': pk}))
         else:
             order.orderitems.add(order_item[0])
-            messages.success(request, "This product has been added to your cart!")
-            HttpResponseRedirect(reverse('store:product_detail', kwargs={'pk': product.pk}))
+            messages.success(request, 'This item has been added to your cart!')
+            return HttpResponseRedirect(reverse('store:product_detail', kwargs={'pk': pk}))
     else:
         order = Order(user=request.user)
         order.save()
         order.orderitems.add(order_item[0])
-        messages.success(request, "This product has been added to your cart!")
-        HttpResponseRedirect(reverse('store:product_detail', kwargs={'pk': product.pk}))
+        messages.success(request, 'This item has been added to your cart!')
+        return HttpResponseRedirect(reverse('store:product_detail', kwargs={'pk': pk}))
 
 
 # CART VIEW
@@ -42,3 +42,24 @@ def cart_view(request):
     else:
         messages.warning(request, "You don't have any item in your cart.")
         return redirect("store:home")
+
+
+# REMOVE FORM CART VIEW
+@login_required
+def remove_from_cart(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.orderitems.filter(product=product).exists():
+            order_item = Cart.objects.filter(product=product, user=request.user, purchased=False)[0]
+            order.orderitems.remove(order_item)
+            order_item.delete()
+            messages.warning(request, "This item has been removed from your cart!")
+            return redirect('order:cart')
+        else:
+            messages.info(request, 'This item was not in your cart!')
+            return redirect('store:home')
+    else:
+        messages.warning(request, "You don't have an active order.")
+        return redirect('store:home')
