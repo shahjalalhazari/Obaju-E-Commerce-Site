@@ -70,7 +70,7 @@ def user_login(request):
         if user is not None:
             login(request, user)
             messages.success(request, "You are logged in!")
-            return redirect('store:home')
+            return redirect('home:home')
         else:
             messages.warning(request, "Invalid Email or Password")
             return redirect('account:login')
@@ -81,7 +81,7 @@ def user_login(request):
 def logout_user(request):
     logout(request)
     messages.warning(request, 'You are logged out!')
-    return redirect('store:home')
+    return redirect('home:home')
 
 
 #PASSWORD RESET VIEW
@@ -109,7 +109,7 @@ def password_reset_request(request):
 					except BadHeaderError:
 						return HttpResponse('Invalid header found.')
 					messages.info(request, 'A message with reset password instructions has been sent to your inbox.')
-					return redirect("store:home")
+					return redirect("home:home")
 			messages.warning(request, 'An invalid email has been entered.')
 	password_reset_form = CustomPasswordResetForm()
 	return render(request=request, template_name="Account/Password/password_reset.html", context={"password_reset_form":password_reset_form})

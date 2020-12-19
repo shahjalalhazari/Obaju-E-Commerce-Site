@@ -41,7 +41,7 @@ def cart_view(request):
         return render(request, 'Order/cart.html', {'carts': carts, 'order': order})
     else:
         messages.warning(request, "You don't have any item in your cart.")
-        return redirect("store:home")
+        return redirect("home:home")
 
 
 # REMOVE FORM CART VIEW
@@ -59,10 +59,10 @@ def remove_from_cart(request, pk):
             return redirect('order:cart')
         else:
             messages.info(request, 'This item was not in your cart!')
-            return redirect('store:home')
+            return redirect('home:home')
     else:
         messages.warning(request, "You don't have an active order.")
-        return redirect('store:home')
+        return redirect('home:home')
 
 
 # INCREASE ITEM QUANTITY VIEW
@@ -84,7 +84,7 @@ def inc_qty(request, pk):
             return redirect('order:cart')
     else:
         messages.warning(request, "You don't have an active order.")
-        return redirect('store:home')
+        return redirect('home:home')
 
 
 # DECREASE ITEM QUANTITY VIEW
@@ -111,4 +111,4 @@ def dec_qty(request, pk):
             return redirect('order:cart')
     else:
         messages.warning(request, "You don't have an active order.")
-        return redirect('store:home')
+        return redirect('home:home')

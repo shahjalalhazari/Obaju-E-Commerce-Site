@@ -70,7 +70,7 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a href="{% url 'store:home' %}" class="navbar-brand home">
+            <a href="{% url 'home:home' %}" class="navbar-brand home">
                 <img src="{% static 'img/logo.png' %}" alt="Obaju logo" class="d-none d-md-inline-block">
                 <img src="{% static 'img/logo-small.png' %}" alt="Obaju logo" class="d-inline-block d-md-none">
                 <span class="sr-only">Obaju - go to homepage</span>
@@ -91,7 +91,7 @@
             <div id="navigation" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="{% url 'store:home' %}" class="nav-link {% active_link 'store:home' strict=True %}">Home</a>
+                        <a href="{% url 'home:home' %}" class="nav-link {% active_link 'home:home' strict=True %}">Home</a>
                     </li>
                     {% for whom in whoms %}
                         <li class="nav-item dropdown menu-large">

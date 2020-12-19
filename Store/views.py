@@ -5,12 +5,6 @@ from django.core.paginator import Paginator
 from .models import *
 
 
-# HOME PAGE
-def home(request):
-    products = Product.objects.all()
-    return render(request, 'Store/home.html', {'products': products})
-
-
 # PRODUCT DETAIL VIEW
 def product_detail(request, pk):
     product = Product.objects.get(pk=pk)

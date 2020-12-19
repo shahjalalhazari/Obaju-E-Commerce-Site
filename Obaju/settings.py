@@ -26,9 +26,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'Store',
     'Account',
+    'Home',
     'Order',
+    'Store',
 
     'crispy_forms',
     'active_link',
