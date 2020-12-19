@@ -58,29 +58,27 @@
 						<li><a href="faq.html">FAQ</a></li>
 						<li><a href="contact.html">Contact us</a></li>
 					</ul>
+					{% if request.user.is_authenticated %}
+					{% else %}
 					<hr>
 					<h4 class="mb-3">User section</h4>
 					<ul class="list-unstyled">
 						<li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
 						<li><a href="{% url 'account:signup' %}">Regiter</a></li>
 					</ul>
+					{% endif %}
 				</div>
 				<!-- /.col-lg-3-->
 				<div class="col-lg-3 col-md-6">
-					<h4 class="mb-3">Top categories</h4>
-					<h5>Men</h5>
-					<ul class="list-unstyled">
-						<li><a href="category.html">T-shirts</a></li>
-						<li><a href="category.html">Shirts</a></li>
-						<li><a href="category.html">Accessories</a></li>
-					</ul>
-					<h5>Ladies</h5>
-					<ul class="list-unstyled">
-						<li><a href="category.html">T-shirts</a></li>
-						<li><a href="category.html">Skirts</a></li>
-						<li><a href="category.html">Pants</a></li>
-						<li><a href="category.html">Accessories</a></li>
-					</ul>
+					<h4 class="mb-3">Categories</h4>
+					{% for whom in whoms %}
+						<h5>{{ whom.whom }}</h5>
+						{% for category in whom.for_whom.all %}
+							<ul class="list-unstyled">
+								<li><a href="category.html">{{ category.name }}</a></li>
+							</ul>
+						{% endfor %}
+					{% endfor %}
 				</div>
 				<!-- /.col-lg-3-->
 				<div class="col-lg-3 col-md-6">

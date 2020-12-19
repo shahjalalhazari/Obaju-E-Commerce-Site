@@ -15,10 +15,20 @@
 							<li class="breadcrumb-item">
 								<a href="{% url 'store:home' %}">Home</a>
 							</li>
-							<li class="breadcrumb-item">{{ product.sub_category.category.for_whom.whom }}</li>
-							<li class="breadcrumb-item">{{ product.sub_category.category.name }}</li>
 							<li class="breadcrumb-item">
-								<a href="{% url 'store:product_list' pk=product.sub_category.pk %}">{{ product.sub_category.name }}</a>
+								<a href="{% url 'store:category_list' pk=product.sub_category.category.for_whom.pk %}">
+									{{ product.sub_category.category.for_whom.whom }}
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="{% url 'store:sub_cat_list' pk=product.sub_category.category.pk %}">
+									{{ product.sub_category.category.name }}
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="{% url 'store:product_list' pk=product.sub_category.pk %}">
+									{{ product.sub_category.name }}
+								</a>
 							</li>
 							<li aria-current="page" class="breadcrumb-item active">{{ product.title }}</li>
 						</ol>
@@ -37,19 +47,23 @@
 									<div class="item">
 										<img src="/media/{{ product.img_1 }}" alt="{{ product.title }}" class="img-fluid">
 									</div>
-								{% elif product.img_2 %}
+								{% endif %}
+								{% if product.img_2 %}
 									<div class="item">
 										<img src="/media/{{ product.img_2 }}" alt="{{ product.title }}" class="img-fluid">
 									</div>
-								{% elif product.img_3 %}
+								{% endif %}
+								{% if product.img_3 %}
 									<div class="item">
 										<img src="/media/{{ product.img_3 }}" alt="{{ product.title }}" class="img-fluid">
 									</div>
-								{% elif product.img_4 %}
+								{% endif %}
+								{% if product.img_4 %}
 									<div class="item">
 										<img src="/media/{{ product.img_4 }}" alt="{{ product.title }}" class="img-fluid">
 									</div>
-								{% elif product.img_5 %}
+								{% endif %}
+								{% if product.img_5 %}
 									<div class="item">
 										<img src="/media/{{ product.img_5 }}" alt="{{ product.title }}" class="img-fluid">
 									</div>
@@ -93,25 +107,29 @@
 										class="img-fluid">
 								</button>
 								{% if product.img_1 %}
-								<button class="owl-thumb-item">
-									<img src="/media/{{ product.img_1 }}" alt="{{ product.title }}" class="img-fluid">
-								</button>
-								{% elif product.img_2 %}
-								<button class="owl-thumb-item">
-									<img src="/media/{{ product.img_2 }}" alt="{{ product.title }}" class="img-fluid">
-								</button>
-								{% elif product.img_3 %}
-								<button class="owl-thumb-item">
-									<img src="/media/{{ product.img_3 }}" alt="{{ product.title }}" class="img-fluid">
-								</button>
-								{% elif product.img_4 %}
-								<button class="owl-thumb-item">
-									<img src="/media/{{ product.img_4 }}" alt="{{ product.title }}" class="img-fluid">
-								</button>
-								{% elif product.img_5 %}
-								<button class="owl-thumb-item">
-									<img src="/media/{{ product.img_5 }}" alt="{{ product.title }}" class="img-fluid">
-								</button>
+									<button class="owl-thumb-item">
+										<img src="/media/{{ product.img_1 }}" alt="{{ product.title }}" class="img-fluid">
+									</button>
+								{% endif %}
+								{% if product.img_2 %}
+									<button class="owl-thumb-item">
+										<img src="/media/{{ product.img_2 }}" alt="{{ product.title }}" class="img-fluid">
+									</button>
+								{% endif %}
+								{% if product.img_3 %}
+									<button class="owl-thumb-item">
+										<img src="/media/{{ product.img_3 }}" alt="{{ product.title }}" class="img-fluid">
+									</button>
+								{% endif %}
+								{% if product.img_4 %}
+									<button class="owl-thumb-item">
+										<img src="/media/{{ product.img_4 }}" alt="{{ product.title }}" class="img-fluid">
+									</button>
+								{% endif %}
+								{% if product.img_5 %}
+									<button class="owl-thumb-item">
+										<img src="/media/{{ product.img_5 }}" alt="{{ product.title }}" class="img-fluid">
+									</button>
 								{% endif %}
 							</div>
 						</div>
@@ -252,7 +270,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 
 {% endblock %}

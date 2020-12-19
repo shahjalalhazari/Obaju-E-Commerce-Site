@@ -29,6 +29,20 @@ def product_list(request, pk):
     return render(request, 'Store/product_list.html', {'sub_category': sub_category, 'products': products})
 
 
+# CATEGORY LIST
+def category_list(request, pk):
+    for_whom = ForWhom.objects.get(pk=pk)
+    category_list = Category.objects.filter(for_whom=for_whom)
+    return render(request, 'Store/category_list.html', {'for_whom': for_whom, 'category_list': category_list})
+
+
+# SUB CATEGORY LIST
+def sub_cat_list(request, pk):
+    category = Category.objects.get(pk=pk)
+    sub_category_list = SubCategory.objects.filter(category=category)
+    return render(request, 'Store/sub_cate_list.html', {'category': category, 'sub_category_list': sub_category_list})
+
+
 # PRODUCT LIST VIEW
 def add_review(request, pk):
     if request.method == "POST":
