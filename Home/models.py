@@ -9,3 +9,12 @@ class Contact(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return "{} - {}".format(self.email, self.name)
+
+
+# FAQ MODEL
+class Faq(models.Model):
+    question = models.CharField(max_length=120)
+    answere = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return "{}".format(self.question)

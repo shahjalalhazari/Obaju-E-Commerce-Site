@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from Store.models import Product
-from .models import Contact
+from .models import Contact, Faq
 
 
 # HOME PAGE
@@ -30,3 +30,9 @@ def contact_us(request):
         return HttpResponseRedirect(reverse("home:contact"))
     else:
         return render(request, 'Home/contact.html')
+
+
+# FAQs VIEW
+def faq(request):
+    faqs = Faq.objects.all()
+    return render(request, "Home/faq.html", {'faqs': faqs})

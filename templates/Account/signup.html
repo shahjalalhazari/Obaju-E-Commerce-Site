@@ -14,7 +14,7 @@
                     <div class="box">
                         <h1 class="text-center">Create New Account</h1>
                         <p class="text-muted text-center">If you have any questions, please feel free to <a
-                            href="#">contact us</a></p>
+                            href="{% url 'home:contact' %}">contact us</a></p>
                         <hr>
                         <form method="POST">
                             {% csrf_token %}
