@@ -26,7 +26,13 @@
                         </li>
                         {% endif %}
                         <li class="list-inline-item">
-                            <a href="#">Contact</a>
+                            <a href="#">About Us</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{% url 'home:contact' %}">Contact Us</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">FAQs</a>
                         </li>
                     </ul>
                 </div>
@@ -139,11 +145,13 @@
                         <span class="sr-only">Toggle search</span>
                         <i class="fa fa-search"></i>
                     </a>
+                    {% if request.user.is_authenticated %}
                     <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block">
                         <a href="{% url 'order:cart' %}" class="btn btn-primary navbar-btn">
                             <i class="fa fa-shopping-cart"></i><span>{{ request.user | item_total }} items in cart</span>
                         </a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
