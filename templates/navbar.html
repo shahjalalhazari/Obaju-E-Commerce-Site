@@ -8,8 +8,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offer mb-3 mb-lg-0">
-                    <a href="#" class="btn btn-success btn-sm">+880 1624 677501</a>
-                    <a href="#" class="ml-1">01/45, Pennai, Gouripur, Daudkandi, Comilla - 3517 Bangladesh</a>
+                    <a href="{% url 'home:contact' %}" class="btn btn-success btn-sm">+880 1624 677501</a>
+                    <a href="{% url 'home:contact' %}" class="ml-1">891 Amsterdam Ave, New York, NY 10025, USA</a>
                 </div>
                 <div class="col-lg-4 text-center text-lg-right">
                     <ul class="menu list-inline mb-0">
@@ -26,7 +26,7 @@
                         </li>
                         {% endif %}
                         <li class="list-inline-item">
-                            <a href="#">About Us</a>
+                            <a href="{% url 'home:about' %}">About Us</a>
                         </li>
                         <li class="list-inline-item">
                             <a href="{% url 'home:contact' %}">Contact Us</a>
@@ -101,7 +101,7 @@
                     </li>
                     {% for whom in whoms %}
                         <li class="nav-item dropdown menu-large">
-                            <a href="" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">{{ whom.whom }}<b class="caret"></b>
+                            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">{{ whom.whom }}<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu megamenu">
                                 <li>
@@ -112,7 +112,7 @@
                                                 <ul class="list-unstyled mb-3">
                                                     {% for sub_category in category.sub_category.all %}
                                                         <li class="nav-item">
-                                                            <a href="{% url 'store:product_list' pk=sub_category.pk %}" class="nav-link {% active_link 'store:product_list' strict=True %}">{{ sub_category.name }}</a>
+                                                            <a href="{% url 'store:product_list' pk=sub_category.pk %}" class="nav-link">{{ sub_category.name }}</a>
                                                         </li>
                                                     {% endfor %}
                                                 </ul>

@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item">
                                 <a href="{% url 'home:home' %}">Home</a>
                             </li>
-                            <li aria-current=" page" class="breadcrumb-item active">Contact</li>
+                            <li aria-current=" page" class="breadcrumb-item active">Contact Us</li>
                         </ol>
                     </nav>
                 </div>
@@ -51,7 +51,7 @@
                         <div class="card-body">
                             <ul class="nav nav-pills flex-column">
                                 <li>
-                                    <a href="#" class="nav-link {% active_link '' strict=True %}">About Us</a>
+                                    <a href="{% url 'home:about' %}" class="nav-link {% active_link 'home:about' strict=True %}">About Us</a>
                                 </li>
                                 <li>
                                     <a href="{% url 'home:contact' %}" class="nav-link {% active_link 'home:contact' strict=True %}">Contact Us</a>
@@ -112,6 +112,9 @@
                                 </div>
                             </div>
                         </form>
+                        <div class="text-center text-uppercase mt-5">
+                            <h4><a href="{% url 'home:home' %}" class="btn btn-md btn-primary">Back to the Home page</a></h4>
+                        </div>
                     </div>
                 </div>
             </div>

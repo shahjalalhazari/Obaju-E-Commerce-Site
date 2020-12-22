@@ -13,6 +13,11 @@ def home(request):
     return render(request, 'Home/home.html', {'products': products})
 
 
+# ABOUT US VIEW
+def about_us(request):
+    return render(request, "Home/about.html", {})
+
+
 # CONTACT US VIEW
 def contact_us(request):
     if request.method == "POST":

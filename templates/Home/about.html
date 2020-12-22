@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load active_link_tags %}
+
+{% block TitleBlock %}About Us - {% endblock %}
+
+{% block BodyBlock %}
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- breadcrumb-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'home:home' %}">Home</a>
+                            </li>
+                            <li aria-current=" page" class="breadcrumb-item active">About Us</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card sidebar-menu mb-4">
+                        <div class="card-header">
+                            <h3 class="h4 card-title">Other Pages</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="nav nav-pills flex-column">
+                                <li>
+                                    <a href="{% url 'home:about' %}" class="nav-link {% active_link 'home:about' strict=True %}">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'home:contact' %}" class="nav-link {% active_link 'home:contact' strict=True %}">Contact Us</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'home:faq' %}" class="nav-link {% active_link 'home:faq' strict=True %}">FAQs</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div id="text-page" class="box">
+                        <h1>ABOUT US</h1>
+                        <blockquote class="blockquote">
+                            <p class="lead">When you are starting your online business you don’t want to waste precious time writing
+                                About Us pages and Shipping Information pages. Without knowing what you need to write about
+                                on these pages you can waste time creating draft after draft without going anywhere. So we
+                                decided to simplify things a bit for you. We will look at inspiring About Us and Shipping
+                                Information page examples and templates to help you write your first one.</p>
+                        </blockquote>
+                        <h3>About Us Page</h3>
+                        <p>An About Us page can be one of the most important pages on your website but it is one of the
+                            most overlooked elements on your website normally. About Us pages can highlight why you
+                            created your business, your commitment to sustainability, or you can tell the story of how
+                            your business came to be. As an important part of your website your About Us page can set
+                            you apart from your competitors in a way that can build your brand in a positive way.</p>
+                        <h3>What Are About Us Pages?</h3>
+                        <p>An About Us Page is a page on your website that tells your readers all about you. It includes
+                            a detailed description covering all aspects of your business and you as entrepreneurs. This
+                            can include the products or services you are offering, how you came into being as a
+                            business, your mission and vision, your aim, and maybe something about your future goals
+                            too. Your About Us page is your perfect opportunity to tell a compelling story about your
+                            business.</p>
+                        <h3>What Should an About Us Page Include?</h3>
+                        <img src="{% static 'img/about-us.webp' %}" alt="About us of Obaju E-Commerce" style="width: 100%;">
+                        <p>It is important not to overlook the marketing potential that lies within the content of your
+                            website’s About Us page. The About Us page plays a large part in the impression you leave on
+                            a visitor to your website. It is your chance to make the best out of this opportunity and
+                            present yourself and your brand in the best possible way. This is where people come to learn
+                            more about your brand and the people behind it. There’s also a high chance that your About
+                            Us page will be your most frequently viewed page. You need to make sure that the information
+                            you add on the About Us page accurately represents who you are as a brand. That’s why we’ve
+                            included a list that you can go through to make sure you haven’t missed anything crucial.</p>
+                        <h4>1. Vision and Mission</h4>
+                        <blockquote class="blockquote">
+                            <p>Start your About Us page by telling your customers about yourself. What is unique about you,
+                                what are your key features and what is your mission? Try to stand out by conveying your
+                                values and culture as a brand, or what brought your company together. Use this area to fully
+                                answer the question of who you are as a brand, and what you represent. This doesn’t mean
+                                that it has to be overly lengthy, but you can use this space to communicate yourself in the
+                                way you are comfortable with, with your audience.</p>
+                        </blockquote>
+                        <h4>2. Your History</h4>
+                        <blockquote class="blockquote">
+                            <p>Take the visitors on your website to a trip down memory lane, and give them an insight to
+                                the history behind your store. Here, you can show them where, how, and when you started, and
+                                everything your business has accomplished on the way. This is your chance to share your
+                                relevant milestones and achievements relating to your business in an engaging way. You can
+                                even choose to present your history to your viewers in the form of a timeline, which allows
+                                you to display a large amount of information in a visually engaging manner. Your customers
+                                or potential customers might be interested in seeing how you grew over the years.</p>
+                        </blockquote>
+                        <h4>3. Team Member Profiles</h4>
+                        <blockquote class="blockquote">
+                            <p>Add an emotional element to your About Us page by adding details of the people that are
+                                driving the passion at your business. People find it easier to connect with human beings, so
+                                allow the personality of your crew to shine through the About Us page.</p>
+                        </blockquote>
+                        <h4>4. Multimedia & Infographics</h4>
+                        <blockquote class="blockquote">
+                            <p>A well-built infographic might help visitors remember about you or your business better than
+                                any amount of words. So if you think it works better for your brand or business, skip the
+                                lengthy description, or add a well-designed graphic that can help your visitors understand
+                                your concept. Or maybe you would like to add a cool video about how your business was
+                                created, or about your story and let it speak for itself.</p>
+                        </blockquote>
+                        <div class="text-center text-uppercase mt-5">
+                            <h4><a href="{% url 'home:home' %}" class="btn btn-md btn-primary">Back to the Home page</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
