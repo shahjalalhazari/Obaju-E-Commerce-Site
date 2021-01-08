@@ -20,7 +20,7 @@
                         </ol>
                     </nav>
                 </div>
-                <div id="basket" class="col-lg-9">
+                <div id="basket" class="col-lg-12">
                     <div class="box">
                         <form method="post" action="checkout1.html">
                             <h1>Shopping cart</h1>
@@ -42,10 +42,10 @@
                                         <tr>
                                             <td class="text-left">
                                                 <a href="{% url 'store:product_detail' pk=cart.product.pk %}">
-                                                    <img src="/media/{{ cart.product.main_image }}" alt="White Blouse Armani">
+                                                    <img src="/media/{{ cart.product.main_image }}" alt="{{ cart.product.title }}">
                                                 </a>
                                             </td>
-                                            <td class="text-left" style="width: 40%;">
+                                            <td class="text-left" style="width: 40%; padding-left:0;">
                                                 <a href="{% url 'store:product_detail' pk=cart.product.pk %}">{{ cart.product.title }}</a>
                                             </td>
                                             <td>
@@ -98,7 +98,7 @@
                         </form>
                     </div>
                     <!-- /.box-->
-                    <!-- <div class="row same-height-row">
+                    <div class="row same-height-row">
                         <div class="col-lg-3 col-md-6">
                             <div class="box same-height">
                                 <h3>You may also like these products</h3>
@@ -155,10 +155,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
-                <!-- /.col-lg-9-->
-                <div class="col-lg-3">
+                <!-- <div class="col-lg-3">
                     <div class="box">
                         <div class="box-header">
                             <h4 class="mb-0">Coupon code</h4>
@@ -170,7 +169,6 @@
                                     <button type="button" class="btn btn-primary"><i
                                             class="fa fa-gift"></i></button></span>
                             </div>
-                            <!-- /input-group-->
                         </form>
                     </div>
                     <div id="order-summary" class="box">
@@ -202,8 +200,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <!-- /.col-md-3-->
+                </div> -->
             </div>
         </div>
     </div>

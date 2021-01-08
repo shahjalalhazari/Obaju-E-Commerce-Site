@@ -41,3 +41,8 @@ def contact_us(request):
 def faq(request):
     faqs = Faq.objects.all()
     return render(request, "Home/faq.html", {'faqs': faqs})
+
+
+# ERROR 404 VIEW
+def error_404_page(request):
+    return render(request, "Home/404.html", {})

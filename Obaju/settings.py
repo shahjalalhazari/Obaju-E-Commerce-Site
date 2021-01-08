@@ -29,8 +29,9 @@ INSTALLED_APPS = [
 
     'Account',
     'Home',
-    'Order',
     'Store',
+    'Order',
+    'Payment',
 
     'crispy_forms',
     'active_link',
