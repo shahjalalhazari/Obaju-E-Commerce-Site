@@ -43,14 +43,14 @@
                                     <div class="front">
                                         <a href="{% url 'store:product_detail' pk=product.pk %}">
                                             <img src="/media/{{ product.main_image }}" alt="{{ product.title }}"
-                                                class="img-fluid" style="background-color: #fff;">
+                                                class="img-fluid" style="background-color: #fff;" style="width: 450px; height: 600px;">
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <a href="{% url 'store:product_detail' pk=product.pk %}" class="invisible">
                                 <img src="/media/{{ product.main_image }}" alt="{{ product.title }}" class="img-fluid"
-                                    style="background-color: #fff;">
+                                    style="background-color: #fff;" style="width: 450px; height: 600px;">
                             </a>
                             <div class="text">
                                 <h3>
@@ -60,32 +60,23 @@
                                     <del>{% if product.old_price %}${{ product.old_price }}{% endif %}</del> ${{ product.price }}
                                 </p>
                             </div>
-                            <!-- /.text-->
                             <div class="ribbon sale">
                                 <div class="theribbon">SALE</div>
                                 <div class="ribbon-background"></div>
                             </div>
-                            <!-- /.ribbon-->
                             <div class="ribbon new">
                                 <div class="theribbon">NEW</div>
                                 <div class="ribbon-background"></div>
                             </div>
-                            <!-- /.ribbon-->
                             <div class="ribbon gift">
                                 <div class="theribbon">GIFT</div>
                                 <div class="ribbon-background"></div>
                             </div>
-                            <!-- /.ribbon-->
                         </div>
-                        <!-- /.product-->
                     </div>
                     {% endfor %}
-                    <!-- /.product-slider-->
                 </div>
-                <!-- /.container-->
             </div>
-            <!-- /#hot-->
-            <!-- *** HOT END ***-->
         </div>
         <!--
     *** GET INSPIRED ***
@@ -97,12 +88,21 @@
                     <h3>Get Inspired</h3>
                     <p class="lead">Get the inspiration from our world class designers</p>
                     <div id="get-inspired" class="owl-carousel owl-theme">
-                        <div class="item"><a href="#"><img src="{% static 'img/getinspired1.jpg' %}" alt="Get inspired"
-                                    class="img-fluid"></a></div>
-                        <div class="item"><a href="#"><img src="{% static 'img/getinspired2.jpg' %}" alt="Get inspired"
-                                    class="img-fluid"></a></div>
-                        <div class="item"><a href="#"><img src="{% static 'img/getinspired3.jpg' %}" alt="Get inspired"
-                                    class="img-fluid"></a></div>
+                        <div class="item">
+                            <a href="#">
+                                <img src="{% static 'img/getinspired1.jpg' %}" alt="Get inspired" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img src="{% static 'img/getinspired2.jpg' %}" alt="Get inspired" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img src="{% static 'img/getinspired3.jpg' %}" alt="Get inspired" class="img-fluid">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

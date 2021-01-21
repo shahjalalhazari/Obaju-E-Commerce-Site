@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load active_link_tags %}
+
+{% block TitleBlock %}FAQ - {% endblock %}
+
+{% block BodyBlock %}
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- breadcrumb-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li aria-current="page" class="breadcrumb-item active">FAQ</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card sidebar-menu mb-4">
+                        <div class="card-header">
+                            <h3 class="h4 card-title">Other Pages</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="nav nav-pills flex-column">
+                                <li>
+                                    <a href="{% url 'home:about' %}" class="nav-link {% active_link 'home:about' strict=True %}">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'home:contact' %}"
+                                        class="nav-link {% active_link 'home:contact' strict=True %}">Contact Us</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'home:faq' %}" class="nav-link {% active_link 'home:faq' strict=True %}">FAQs</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div id="text-page" class="box">
+                        <h1>Frequently Asked Questions</h1>
+                        <p class="lead">Are you curious about something? Do you have some kind of problem with our
+                            products?</p>
+                        <p>Please feel free to <a href="{% url 'home:contact' %}">contact us</a>, our customer service center is working for you 24/7.</p>
+                        <hr>
+                        {% for faq in faqs %}
+                        <div id="accordion">
+                            <div class="card border-primary mb-3">
+                                <div id="headingOne" class="card-header p-0 border-0">
+                                    <h4 class="mb-0">
+                                        <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="btn btn-primary d-block text-left rounded-0">{{ forloop.counter }}. {{ faq.question }}</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion" class="collapse show">
+                                    <div class="card-body">
+                                        <p>{{ faq.answere | linebreaks }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="text-center text-uppercase mt-5">
+                            <h4><a href="{% url 'home:home' %}" class="btn btn-md btn-primary">Back to the Home page</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
