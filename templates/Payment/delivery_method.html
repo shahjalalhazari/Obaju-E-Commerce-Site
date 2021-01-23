@@ -54,9 +54,8 @@
                                         <div class="box shipping-method">
                                             <h4><strong>{{ method.name }}</strong> - {% if method.cost >= 1 %} ${{ method.cost }} {% else %} FREE {% endif %}</h4>
                                             <p>{{ method.description }}</p>
-                                            <div class="box-footer form-check text-center">
-                                                <input class="form-check-input" type="radio" name="selected_option" id="{{ method.id }}" value="{{ method.id }}" required>
-                                                <label class="form-check-label" for="{{ method.id }}">{{ method.name }}</label>
+                                            <div class="box-footer text-center">
+                                                <input type="radio" name="selected_option" id="{{ method.id }}" value="{{ method.id }}" required>
                                             </div>
                                         </div>
                                     </div>
