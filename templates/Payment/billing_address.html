@@ -2,7 +2,7 @@
 {% load static %}
 {% load cart_tag %}
 
-{% block TitleBlock %}Billing Address - {% endblock %}
+{% block TitleBlock %}Shipping Address - {% endblock %}
 
 {% block BodyBlock %}
 
@@ -14,8 +14,13 @@
 					<!-- breadcrumb-->
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li aria-current="page" class="breadcrumb-item active">Checkout - Address</li>
+							<li class="breadcrumb-item">
+								<a href="{% url 'home:home' %}">Home</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="{% url 'order:cart' %}">Shopping cart</a>
+							</li>
+							<li aria-current="page" class="breadcrumb-item active">Shipping Address</li>
 						</ol>
 					</nav>
 				</div>
@@ -26,7 +31,7 @@
 
 							<div class="nav flex-column flex-md-row nav-pills text-center">
 								<a href="{% url 'payment:shipping_address' %}" class="nav-link flex-sm-fill text-sm-center active"> 
-									<i class="fa fa-map-marker"></i>Billing Address
+									<i class="fa fa-map-marker"></i>Shipping Address
 								</a>
 								<a href="#" class="nav-link flex-sm-fill text-sm-center disabled">
 									<i class="fa fa-truck"> </i>Delivery Method

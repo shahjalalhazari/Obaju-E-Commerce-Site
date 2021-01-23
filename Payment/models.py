@@ -2,6 +2,7 @@ from django.db import models
 from django_countries.fields import CountryField
 from django.conf import settings
 
+# SHIPPING ADDRESS MODEL
 class ShippingAddress(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='billing_address')
     fullname = models.CharField(max_length=300)
