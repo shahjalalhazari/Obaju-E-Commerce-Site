@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from Store.models import Product
+from Payment.models import DeliveryMethod, PaymentMethod
 
 
 # CART MODEL
@@ -21,16 +22,6 @@ class Cart(models.Model):
         return float_total
 
 
-# DELIVERY METHOD MODEL
-class DeliveryMethod(models.Model):
-    name = models.CharField(max_length=30)
-    description = models.TextField()
-    cost = models.IntegerField(default=0)
-
-    def __str__(self):
-        return f"{self.name}"
-
-
 # ORDER MODEL
 class Order(models.Model):
     orderitems = models.ManyToManyField(Cart)
@@ -39,6 +30,7 @@ class Order(models.Model):
     paymentId = models.CharField(max_length=300, blank=True, null=True)
     orderId = models.CharField(max_length=300, blank=True, null=True)
     delivery_method = models.ForeignKey(DeliveryMethod, on_delete=models.SET_NULL, null=True, blank=True)
+    payment_method = models.ForeignKey(PaymentMethod, on_delete=models.SET_NULL, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     # GET TOTAL OF WHOLE CART

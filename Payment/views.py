@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, HttpResponseRedirect, HttpRespons
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from Order.models import Order, DeliveryMethod
-from .models import ShippingAddress
+from Order.models import Order
+from .models import ShippingAddress, DeliveryMethod, PaymentMethod
 from .forms import ShippingAddressForm
 
 
@@ -19,7 +19,7 @@ def shipping_address(request):
             form.save()
             messages.success(request, "Address saved!")
             return HttpResponseRedirect(reverse("payment:delivery_method"))
-    return render(request, "Payment/billing_address.html", {'form': form})
+    return render(request, "Payment/shipping_address.html", {'form': form})
 
 
 # DELIVERY METHOD VIEW
@@ -38,7 +38,17 @@ def delivery_method(request):
 
 
 def payment(request):
-    return HttpResponse("Payment Method")
+    payment_methods = PaymentMethod.objects.all()
+    if request.method == "POST":
+        selected_option = request.POST.get('selected_option') # get selected payment method from user
+        payment_method = PaymentMethod.objects.get(slug=selected_option) # find the selected option
+        #order_qs = Order.objects.get(user=request.user, ordered=False) # get current order of this user
+        #order_qs.delivery_method = delivery_method # add selected delivery method to current order's delivery method
+        #order_qs.save()
+    context = {
+        'payment_methods': payment_methods
+    }
+    return render(request, "Payment/payment.html", context)
 
 
 def order_review(request):

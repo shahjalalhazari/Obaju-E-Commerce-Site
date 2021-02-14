@@ -28,3 +28,28 @@ class ShippingAddress(models.Model):
 
     class Meta:
         verbose_name_plural = "Shipping Addresses"
+
+
+# DELIVERY METHOD MODEL
+class DeliveryMethod(models.Model):
+    name = models.CharField(max_length=30)
+    description = models.TextField()
+    cost = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+# PAYMENT METHOD MODEL
+class PaymentMethod(models.Model):
+    NAME_CHOICES = (
+        ('PAYPAL', 'PayPal'),
+        ('STRIPE', 'Stripe'),
+        ('COD', 'Cash On Delivary')
+    )
+    name = models.CharField(choices=NAME_CHOICES, max_length=10)
+    description = models.TextField()
+    slug = models.SlugField(unique=True, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.name}"
