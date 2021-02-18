@@ -6,6 +6,6 @@ app_name = 'payment'
 urlpatterns = [
     path('shipping-address/', views.shipping_address, name="shipping_address"),
     path('delivery-method/', views.delivery_method, name="delivery_method"),
-    path('', views.payment, name="payment"),
+    path('method/', views.payment, name="payment"),
     path('order-review/', views.order_review, name="order_review"),
 ]

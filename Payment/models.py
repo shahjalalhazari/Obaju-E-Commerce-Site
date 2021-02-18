@@ -44,7 +44,7 @@ class DeliveryMethod(models.Model):
 class PaymentMethod(models.Model):
     NAME_CHOICES = (
         ('PAYPAL', 'PayPal'),
-        ('STRIPE', 'Stripe'),
+        ('CARD', 'Card'),
         ('COD', 'Cash On Delivary')
     )
     name = models.CharField(choices=NAME_CHOICES, max_length=10)

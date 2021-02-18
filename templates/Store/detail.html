@@ -164,7 +164,10 @@
 												<div class="card border-primary review-block">
 													<div class="card-body">
 														<p class="review-block-header">
-															<i class="far fa-user"></i> <strong>{{ review.name }}</strong> <i class="far fa-clock"></i> <span class="text-secondary text-muted">{{ review.created | date:"M d, Y" }}</span>
+															<i class="far fa-user"></i>
+															<strong>{{ review.name }}</strong>
+															<i class="far fa-clock"></i>
+															<span class="text-secondary text-muted">{{ review.created | date:"M d, Y" }}</span>
 															<span class="float-right stars">{% if review.rating < 5 %}<i class="far fa-star"></i>{% else %}<i class="fas fa-star"></i>{% endif %}</span>
 															<span class="float-right stars">{% if review.rating < 4 %}<i class="far fa-star"></i>{% else %}<i class="fas fa-star"></i>{% endif %}</span>
 															<span class="float-right stars">{% if review.rating < 3 %}<i class="far fa-star"></i>{% else %}<i class="fas fa-star"></i>{% endif %}</span>

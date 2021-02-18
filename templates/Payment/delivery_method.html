@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load cart_tag %}
 
 {% block TitleBlock %}Delivery Method - {% endblock %}
 
@@ -25,12 +24,13 @@
                 </div>
                 <div id="checkout" class="col-lg-12">
                     <div class="box">
-                        <form method="POST" action="">
-                            <h1>Delivery Method</h1>
+                        <form method="POST">
 
                             {% csrf_token %}
 
-                            <div class="nav flex-column flex-sm-row nav-pills">
+                            <h1>Checkout - Delivery Method</h1>
+
+                            <div class="nav flex-column flex-sm-row nav-pills text-center">
                                 <a href="{% url 'payment:shipping_address' %}" class="nav-link flex-sm-fill text-sm-center">
                                     <i class="fa fa-map-marker"></i>Shipping Address
                                 </a>
@@ -63,50 +63,17 @@
 
                             <div class="box-footer d-flex justify-content-between">
                                 <a href="{% url 'payment:shipping_address' %}" class="btn btn-outline-secondary">
-                                    <i class="fa fa-chevron-left"></i>Back to address
+                                    <i class="fa fa-chevron-left"></i>
+                                    Back to address
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                    Continue to Payment Method<i lass="fa fa-chevron-right"></i>
+                                    Continue to Payment Method
+                                    <i class="fa fa-chevron-right"></i>
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <!-- /.col-md-9-->
-                <!-- <div class="col-md-3">
-                    <div id="order-summary" class="card">
-                        <div class="card-header">
-                            <h3 class="mt-4 mb-4">Order summary</h3>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-muted">Shipping and additional costs are calculated based on the values you
-                                have entered.</p>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>Order subtotal</td>
-                                            <th>$446.00</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Shipping and handling</td>
-                                            <th>$10.00</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Tax</td>
-                                            <th>$0.00</th>
-                                        </tr>
-                                        <tr class="total">
-                                            <td>Total</td>
-                                            <th>$456.00</th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- /.col-md-3-->
             </div>
         </div>
     </div>
