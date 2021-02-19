@@ -7,9 +7,6 @@ from Order.models import Order, Cart
 from .models import ShippingAddress, DeliveryMethod, PaymentMethod
 from .forms import ShippingAddressForm
 
-import stripe
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
 
 # BIILLING ADDRESS VIEW
 @login_required

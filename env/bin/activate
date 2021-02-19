@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/htb/Desktop/Obaju/Obaju-E-Commerce-Website/env"
+VIRTUAL_ENV="/home/htb/Desktop/Obaju-E-Commerce-Website/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
