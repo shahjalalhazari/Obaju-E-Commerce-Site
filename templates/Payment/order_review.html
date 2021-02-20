@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load cart_tag %}
 
 {% block TitleBlock %}Order Review - {% endblock %}
 
@@ -28,110 +27,109 @@
 
                 <div id="checkout" class="col-lg-12">
                     <div class="box">
-                        <form method="GET" action="{% url 'payment:order_review' %}">
-                            <h1>Checkout - Order review</h1>
-                            <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
 
-                            <!-- NAB ITEMS -->
-                            <div class="nav flex-column flex-sm-row nav-pills text-center">
-                                <a href="{% url 'payment:shipping_address' %}"
-                                    class="nav-link flex-sm-fill text-sm-center">
-                                    <i class="fa fa-map-marker"></i>Shipping Address
-                                </a>
-                                <a href="{% url 'payment:delivery_method' %}"
-                                    class="nav-link flex-sm-fill text-sm-center">
-                                    <i class="fa fa-truck"></i>Delivery Method
-                                </a>
-                                <a href="{% url 'payment:payment' %}" class="nav-link flex-sm-fill text-sm-center">
-                                    <i class="fa fa-money"></i>Payment Method
-                                </a>
-                                <a href="{% url 'payment:order_review' %}"
-                                    class="nav-link flex-sm-fill text-sm-center active">
-                                    <i class="fa fa-eye"></i>Order Review
-                                </a>
+                        <h1>Checkout - Order review</h1>
+                        <p class="text-muted">Shipping and additional costs are calculated based on the values you have
+                            entered.</p>
+
+                        <!-- NAB ITEMS -->
+                        <div class="nav flex-column flex-sm-row nav-pills text-center">
+                            <a href="{% url 'payment:shipping_address' %}" class="nav-link flex-sm-fill text-sm-center">
+                                <i class="fa fa-map-marker"></i>Shipping Address
+                            </a>
+                            <a href="{% url 'payment:delivery_method' %}" class="nav-link flex-sm-fill text-sm-center">
+                                <i class="fa fa-truck"></i>Delivery Method
+                            </a>
+                            <a href="{% url 'payment:payment' %}" class="nav-link flex-sm-fill text-sm-center">
+                                <i class="fa fa-money"></i>Payment Method
+                            </a>
+                            <a href="{% url 'payment:order_review' %}"
+                                class="nav-link flex-sm-fill text-sm-center active">
+                                <i class="fa fa-eye"></i>Order Review
+                            </a>
+                        </div>
+
+                        <div class="content">
+                            <!-- TABLE -->
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="text-left pl-5">Product</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Unit price</th>
+                                            <th class="text-center">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for cart in carts %}
+                                        <tr>
+                                            <td class="text-left pr-2" style="padding: 0; margin: 0;">
+                                                <img src="/media/{{ cart.product.main_image }}"
+                                                    alt="{{ cart.product.title }}" style="width: 50px;">
+                                            </td>
+
+                                            <td class="text-left" style="padding: 0; margin-left: 10px;">
+                                                <a href="{% url 'store:product_detail' pk=cart.product.pk %}">
+                                                    {{ cart.product.title }}
+                                                </a>
+                                            </td>
+
+                                            <td class="text-center">{{ cart.quantity }}</td>
+
+                                            <td class="text-center">${{ cart.product.price }}</td>
+
+                                            <td class="text-right pr-5">${{ cart.get_cart_total }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="text-muted">
+                                            <td colspan="4" class="text-left" style="padding-left: 0; margin-left: 0;">
+                                                Order Sub-Total
+                                            </td>
+                                            <td class="text-right pr-5">
+                                                ${{ order.get_order_sub_total }}
+                                            </td>
+                                        </tr>
+                                        <tr class="text-muted">
+                                            <td colspan="4" class="text-left" style="padding-left: 0; margin-left: 0;">
+                                                Shipping and Handling - [{{ order.delivery_method.name }}]
+                                            </td>
+                                            <td class="text-right pr-5">+
+                                                ${{ order.delivery_method.cost | floatformat:2 }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="4" class="text-left" style="padding-left: 0; margin-left: 0;">
+                                                Total Amount
+                                            </th>
+                                            <th class="text-right pr-5">
+                                                ${{ order.get_total_amount }}
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
+                        </div>
 
-                            <div class="content">
-                                <!-- TABLE -->
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="2" class="text-left pl-5">Product</th>
-                                                <th class="text-center">Quantity</th>
-                                                <th class="text-center">Unit price</th>
-                                                <th class="text-center">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for cart in carts %}
-                                            <tr>
-                                                <td class="text-left pr-2" style="padding: 0; margin: 0;">
-                                                    <img src="/media/{{ cart.product.main_image }}"
-                                                        alt="{{ cart.product.title }}" style="width: 50px;">
-                                                </td>
-        
-                                                <td class="text-left" style="padding: 0; margin-left: 10px;">
-                                                    <a href="{% url 'store:product_detail' pk=cart.product.pk %}">
-                                                        {{ cart.product.title }}
-                                                    </a>
-                                                </td>
+                        <!-- BUTTONS-->
+                        <div class="box-footer d-flex justify-content-between">
+                            <a href="{% url 'payment:payment' %}" class="btn btn-outline-secondary">
+                                <i class="fa fa-chevron-left"></i>Back to Payment Method
+                            </a>
 
-                                                <td class="text-center">{{ cart.quantity }}</td>
 
-                                                <td class="text-center">${{ cart.product.price }}</td>
-
-                                                <td class="text-right pr-5">${{ cart.get_cart_total }}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                        <tfoot>
-                                            <tr class="text-muted">
-                                                <td colspan="4" class="text-left" style="padding-left: 0; margin-left: 0;">
-                                                    Order Sub-Total
-                                                </td>
-                                                <td class="text-right pr-5">
-                                                    ${{ order.get_total_amount }}
-                                                </td>
-                                            </tr>
-                                            <tr class="text-muted">
-                                                <td colspan="4" class="text-left" style="padding-left: 0; margin-left: 0;">
-                                                    Shipping and Handling [{{ order.delivery_method.name }}]
-                                                </td>
-                                                <td class="text-right pr-5">+
-                                                    ${{ delivery_method.cost | floatformat:2 }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th colspan="4" class="text-left" style="padding-left: 0; margin-left: 0;">
-                                                    Total Amount
-                                                </th>
-                                                <th class="text-right pr-5">
-                                                    ${{ request.user | total_amount }}
-                                                </th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
-
-                            <!-- BUTTON-->
-                            <div class="box-footer d-flex justify-content-between">
-                                <a href="{% url 'payment:payment' %}" class="btn btn-outline-secondary">
-                                    <i class="fa fa-chevron-left"></i>Back to Payment Method
-                                </a>
-                                {% if checkout %}
-                                <button type="submit" class="btn btn-primary">
-                                    Checkout and Place an Order<i class="fa fa-chevron-right"></i>
-                                </button>
-                                {% else %}
-                                <button type="submit" class="btn btn-primary">
-                                    Place an Order<i class="fa fa-chevron-right"></i>
-                                </button>
-                                {% endif %}
-                            </div>
-
-                        </form>
+                            {% if order.payment_method.slug == "cod" %}
+                            <a href="{% url 'payment:success' %}" class="btn btn-primary">
+                                Place an Order<i class="fa fa-chevron-right"></i>
+                            </a>
+                            {% else %}
+                            <a href="#" class="btn btn-primary">
+                                Checkout and Place an Order<i class="fa fa-chevron-right"></i>
+                            </a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,42 +138,3 @@
 </div>
 
 {% endblock %}
-
-
-
-
-<!-- /.col-lg-9-->
-<!-- <div class="col-lg-3">
-                    <div id="order-summary" class="card">
-                        <div class="card-header">
-                            <h3 class="mt-4 mb-4">Order summary</h3>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-muted">Shipping and additional costs are calculated based on the values you
-                                have entered.
-                            </p>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>Order subtotal</td>
-                                            <th>$446.00</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Shipping and handling</td>
-                                            <th>$10.00</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Tax</td>
-                                            <th>$0.00</th>
-                                        </tr>
-                                        <tr class="total">
-                                            <td>Total</td>
-                                            <th>$456.00</th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>-->
-<!-- /.col-lg-3-->

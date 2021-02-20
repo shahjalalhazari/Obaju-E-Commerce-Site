@@ -1,4 +1,4 @@
-#!/home/htb/Desktop/Obaju/Obaju-E-Commerce-Website/env/bin/python3
+#!/home/htb/Desktop/Obaju-E-Commerce-Website/env/bin/python3
 from django.core import management
 
 if __name__ == "__main__":

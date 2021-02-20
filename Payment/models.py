@@ -17,14 +17,6 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return "{}'s shipping address".format(self.user)
-    
-    def is_fully_filled(self):
-        field_names = [f.name for f in self._meta.get_fields()]
-        for field_name in field_names:
-            value = getattr(self, field_name)
-            if value is None or value =='':
-                return False
-        return True
 
     class Meta:
         verbose_name_plural = "Shipping Addresses"
@@ -34,7 +26,7 @@ class ShippingAddress(models.Model):
 class DeliveryMethod(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
-    cost = models.IntegerField(default=0)
+    cost = models.FloatField(default=0.00)
 
     def __str__(self):
         return f"{self.name}"

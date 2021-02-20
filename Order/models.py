@@ -33,13 +33,20 @@ class Order(models.Model):
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.SET_NULL, null=True, blank=True, related_name='order_payment')
     created = models.DateTimeField(auto_now_add=True)
 
-    # GET TOTAL OF WHOLE CART
-    def get_total_amount(self):
+    # GET SUB TOTAL OF A ORDER
+    def get_order_sub_total(self):
         total = 0
         for item in self.orderitems.all():
             total += float(item.get_cart_total())
             float_total_amount = format(total, '0.2f')
         return float_total_amount
+    
+    # GET TOTAL AMOUNT OF A ORDER WITH DELIVERY COST
+    def get_total_amount(self):
+        order_sub_total = self.get_order_sub_total()
+        delivery_cost = self.delivery_method.cost
+        total = format(float(order_sub_total) + float(delivery_cost), '0.2f')
+        return total
 
     def __str__(self):
         return f"{self.user}'s order"

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block HeadBlock %}
+<meta http-equiv="refresh" content="5; url={% url 'order:orders' %}">
+{% endblock %}
+
+{% block TitleBlock %}Success - {% endblock %}
+
+{% block BodyBlock %}
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <h1>Thank you for your Order. Please wait page will be redirect within 5seconds.</h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
