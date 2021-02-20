@@ -121,7 +121,7 @@
 
 
                             {% if order.payment_method.slug == "cod" %}
-                            <a href="{% url 'payment:status' %}" class="btn btn-primary">
+                            <a href="{% url 'payment:success' %}" class="btn btn-primary">
                                 Place an Order<i class="fa fa-chevron-right"></i>
                             </a>
                             {% else %}
