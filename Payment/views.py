@@ -77,4 +77,11 @@ def order_review(request):
 # ORDER SUCCESS VIEW
 @login_required
 def success(request):
-    return render(request, 'Payment/success.html')
+    order = Order.objects.filter(user=request.user, ordered=False)[0]
+    order.ordered = True
+    order.save()
+    cart_items = Cart.objects.filter(user=request.user, purchased=False)
+    for item in cart_items:
+        item.purchased = True
+        item.save()
+        return render(request, 'Payment/success.html')

@@ -117,5 +117,8 @@ def dec_qty(request, pk):
 # CUSTOMER ORDER VIEW
 @login_required
 def orders(request):
-    context = {}
+    orders = Order.objects.filter(user=request.user, ordered=True)
+    context = {
+        'orders': orders,
+    }
     return render(request, 'Order/orders.html', context)

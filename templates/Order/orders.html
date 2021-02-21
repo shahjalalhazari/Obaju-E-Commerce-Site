@@ -2,7 +2,7 @@
 {% load static %}
 {% load active_link_tags %}
 
-{% block TitleBlock %}Delivery Method - {% endblock %}
+{% block TitleBlock %}Customer Orders - {% endblock %}
 
 {% block BodyBlock %}
 <div id="all">
@@ -13,7 +13,9 @@
 					<!-- breadcrumb-->
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item">
+								<a href="{% url 'home:home' %}">Home</a>
+							</li>
 							<li aria-current="page" class="breadcrumb-item active">My orders</li>
 						</ol>
 					</nav>
@@ -27,32 +29,35 @@
 						</div>
 						<div class="card-body">
 							<ul class="nav nav-pills flex-column">
-								<a href="{% url 'account:profile' %}" class="nav-link {% active_link 'account:profile' strict=True %}">
+								<a href="{% url 'account:profile' %}"
+									class="nav-link {% active_link 'account:profile' strict=True %}">
 									<i class="fa fa-user"></i> My account
 								</a>
-								<a href="{% url 'account:change_password' %}" class="nav-link {% active_link 'account:change_password' strict=True %}">
+								<a href="{% url 'account:change_password' %}"
+									class="nav-link {% active_link 'account:change_password' strict=True %}">
 									<i class="fa fa-key" aria-hidden="true"></i> Change Password
 								</a>
-								<a href="{% url 'order:orders' %}" class="nav-link {% active_link 'order:orders' strict=True %}">
+								<a href="{% url 'order:orders' %}"
+									class="nav-link {% active_link 'order:orders' strict=True %}">
 									<i class="fa fa-list"></i> My orders
 								</a>
 								<a href="#" class="nav-link {% active_link 'view-name' strict=True %}">
 									<i class="fa fa-heart"></i> My wishlist
 								</a>
-								<a href="{% url 'account:logout' %}" class="nav-link {% active_link 'account:logout' strict=True %}">
+								<a href="{% url 'account:logout' %}"
+									class="nav-link {% active_link 'account:logout' strict=True %}">
 									<i class="fa fa-sign-out"></i> Logout
 								</a>
 							</ul>
 						</div>
 					</div>
-					<!-- /.col-lg-3-->
-					<!-- *** CUSTOMER MENU END ***-->
 				</div>
+
 				<div id="customer-orders" class="col-lg-9">
 					<div class="box">
 						<h1>My orders</h1>
 						<p class="lead">Your orders on one place.</p>
-						<p class="text-muted">If you have any questions, please feel free to 
+						<p class="text-muted">If you have any questions, please feel free to
 							<a href="{% url 'home:contact' %}">contact us</a>,
 							our customer service center is working for you 24/7.</p>
 						<hr>
@@ -68,12 +73,39 @@
 									</tr>
 								</thead>
 								<tbody>
+									{% for order in orders %}
+									<tr>
+										<th>#{{ order.id }}</th>
+										<td>{{ order.updated | date:"d/m/Y" }}</td>
+										<td>${{ order.get_total_amount }}</td>
+										<td>
+											<span class="badge badge-info">Being prepared</span>
+										</td>
+										<td>
+											<a href="#" class="btn btn-primary btn-sm">View</a>
+										</td>
+									</tr>
+									{% endfor %}
 									<tr>
 										<th># 1735</th>
 										<td>22/06/2013</td>
 										<td>$ 150.00</td>
-										<td><span class="badge badge-info">Being prepared</span></td>
-										<td><a href="#" class="btn btn-primary btn-sm">View</a></td>
+										<td><span class="badge badge-success">Received</span></td>
+										<td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
+									</tr>
+									<tr>
+										<th># 1735</th>
+										<td>22/06/2013</td>
+										<td>$ 150.00</td>
+										<td><span class="badge badge-danger">Cancelled</span></td>
+										<td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
+									</tr>
+									<tr>
+										<th># 1735</th>
+										<td>22/06/2013</td>
+										<td>$ 150.00</td>
+										<td><span class="badge badge-warning">On hold</span></td>
+										<td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
 									</tr>
 								</tbody>
 							</table>
