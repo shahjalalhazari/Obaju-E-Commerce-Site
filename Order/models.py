@@ -25,16 +25,30 @@ class Cart(models.Model):
 
 # ORDER MODEL
 class Order(models.Model):
+    ORDER_CHOICES = (
+        ('ON HOLD', "On hold"),
+        ('RECEIVED', "Received"),
+        ('REPAREING', "Prepareing"),
+        ('SHIPPING', "Shipping"),
+        ('CANCELLED', "Cancelled")
+    )
+    status = models.CharField(choices=ORDER_CHOICES, default="ON HOLD", max_length=15, blank=True, null=True)
     orderitems = models.ManyToManyField(Cart)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name='order_user')
     ordered = models.BooleanField(default=False)
-    paymentId = models.UUIDField(primary_key=False, default=uuid.uuid1, editable=False)
-    validId = models.UUIDField(primary_key=False, default=uuid.uuid1, editable=False)
+    paymentId = models.UUIDField(primary_key=False, default=uuid.uuid1, editable=True)
+    validId = models.UUIDField(primary_key=False, default=uuid.uuid1, editable=True)
     orderId = models.UUIDField(primary_key=False, default=uuid.uuid1, editable=False)
     delivery_method = models.ForeignKey(DeliveryMethod, on_delete=models.SET_NULL, null=True, blank=True)
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.SET_NULL, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['-created']
+
+    def __str__(self):
+        return f"{self.user}'s order"
 
     # GET SUB TOTAL OF A ORDER
     def get_order_sub_total(self):
@@ -50,6 +64,3 @@ class Order(models.Model):
         delivery_cost = self.delivery_method.cost
         total = format(float(order_sub_total) + float(delivery_cost), '0.2f')
         return total
-
-    def __str__(self):
-        return f"{self.user}'s order"

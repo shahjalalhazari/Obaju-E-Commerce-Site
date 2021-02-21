@@ -112,9 +112,9 @@ def dec_qty(request, pk):
     else:
         messages.warning(request, "You don't have an active order.")
         return redirect('home:home')
-    
-    
-# CUSTOMER ORDER VIEW
+
+
+# CUSTOMER ORDERS VIEW
 @login_required
 def orders(request):
     orders = Order.objects.filter(user=request.user, ordered=True)
@@ -122,3 +122,13 @@ def orders(request):
         'orders': orders,
     }
     return render(request, 'Order/orders.html', context)
+
+
+# CUSTOMER ORDER VIEW
+@login_required
+def order(request, pk, orderId):
+    order = Order.objects.filter(orderId=orderId)[0]
+    context = {
+        'order': order,
+    }
+    return render(request, 'Order/order.html', context)

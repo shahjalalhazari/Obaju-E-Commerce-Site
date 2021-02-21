@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load active_link_tags %}
+{% load cart_tag %}
 
 {% block TitleBlock %}Customer Orders - {% endblock %}
 
@@ -23,34 +24,7 @@
 
 				<div class="col-lg-3">
 					<!--  *** CUSTOMER MENU *** -->
-					<div class="card sidebar-menu">
-						<div class="card-header">
-							<h3 class="h4 card-title">Customer section</h3>
-						</div>
-						<div class="card-body">
-							<ul class="nav nav-pills flex-column">
-								<a href="{% url 'account:profile' %}"
-									class="nav-link {% active_link 'account:profile' strict=True %}">
-									<i class="fa fa-user"></i> My account
-								</a>
-								<a href="{% url 'account:change_password' %}"
-									class="nav-link {% active_link 'account:change_password' strict=True %}">
-									<i class="fa fa-key" aria-hidden="true"></i> Change Password
-								</a>
-								<a href="{% url 'order:orders' %}"
-									class="nav-link {% active_link 'order:orders' strict=True %}">
-									<i class="fa fa-list"></i> My orders
-								</a>
-								<a href="#" class="nav-link {% active_link 'view-name' strict=True %}">
-									<i class="fa fa-heart"></i> My wishlist
-								</a>
-								<a href="{% url 'account:logout' %}"
-									class="nav-link {% active_link 'account:logout' strict=True %}">
-									<i class="fa fa-sign-out"></i> Logout
-								</a>
-							</ul>
-						</div>
-					</div>
+					{% include 'Account/user_menu.html' %}
 				</div>
 
 				<div id="customer-orders" class="col-lg-9">
@@ -65,48 +39,37 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>Order</th>
-										<th>Date</th>
-										<th>Total</th>
-										<th>Status</th>
-										<th>Action</th>
+										<th class="text-center">#</th>
+										<th class="text-center">Order ID</th>
+										<th class="text-center">Date</th>
+										<th class="text-center">Total</th>
+										<th class="text-center">Status</th>
+										<th class="text-center">Action</th>
 									</tr>
 								</thead>
 								<tbody>
 									{% for order in orders %}
 									<tr>
-										<th>#{{ order.id }}</th>
-										<td>{{ order.updated | date:"d/m/Y" }}</td>
-										<td>${{ order.get_total_amount }}</td>
-										<td>
-											<span class="badge badge-info">Being prepared</span>
+										<th class="text-center">{{ forloop.counter }}</th>
+										<th class="text-center">{{ order.orderId | orderId_filter }}</th>
+										<td class="text-center">{{ order.updated | date:"g:iA, d/m/y" }}</td>
+										<td class="text-center">${{ order.get_total_amount }}</td>
+										<td class="text-center">
+											<span class=" badge 
+												{% if order.get_status_display == 'Received' %} badge-success 
+												{% elif order.get_status_display == 'Prepareing' %} badge-primary 
+												{% elif order.get_status_display == 'Shipping' %} badge-info 
+												{% elif order.get_status_display == 'Cancelled' %} badge-danger 
+												{% else %} badge-warning 
+												{% endif %}">
+												{{ order.get_status_display }}
+											</span>
 										</td>
-										<td>
-											<a href="#" class="btn btn-primary btn-sm">View</a>
+										<td class="text-center">
+											<a href="{% url 'order:order' pk=order.id orderId=order.orderId %}" class="btn btn-primary btn-sm">View</a>
 										</td>
 									</tr>
 									{% endfor %}
-									<tr>
-										<th># 1735</th>
-										<td>22/06/2013</td>
-										<td>$ 150.00</td>
-										<td><span class="badge badge-success">Received</span></td>
-										<td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-									</tr>
-									<tr>
-										<th># 1735</th>
-										<td>22/06/2013</td>
-										<td>$ 150.00</td>
-										<td><span class="badge badge-danger">Cancelled</span></td>
-										<td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-									</tr>
-									<tr>
-										<th># 1735</th>
-										<td>22/06/2013</td>
-										<td>$ 150.00</td>
-										<td><span class="badge badge-warning">On hold</span></td>
-										<td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-									</tr>
 								</tbody>
 							</table>
 						</div>

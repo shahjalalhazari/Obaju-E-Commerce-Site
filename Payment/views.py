@@ -84,4 +84,4 @@ def success(request):
     for item in cart_items:
         item.purchased = True
         item.save()
-        return render(request, 'Payment/success.html')
+    return render(request, 'Payment/success.html')
