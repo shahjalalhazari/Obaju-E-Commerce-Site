@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 from django.conf import settings
 from Store.models import Product
-from Payment.models import DeliveryMethod, PaymentMethod
+from Payment.models import DeliveryMethod, PaymentMethod, ShippingAddress
 
 
 # CART MODEL
@@ -36,11 +36,12 @@ class Order(models.Model):
     orderitems = models.ManyToManyField(Cart)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name='order_user')
     ordered = models.BooleanField(default=False)
-    paymentId = models.UUIDField(primary_key=False, default=uuid.uuid1, editable=True)
-    validId = models.UUIDField(primary_key=False, default=uuid.uuid1, editable=True)
-    orderId = models.UUIDField(primary_key=False, default=uuid.uuid1, editable=False)
+    paymentId = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=True)
+    validId = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=True)
+    orderId = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=False)
     delivery_method = models.ForeignKey(DeliveryMethod, on_delete=models.SET_NULL, null=True, blank=True)
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.SET_NULL, null=True, blank=True)
+    shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.SET_NULL, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     

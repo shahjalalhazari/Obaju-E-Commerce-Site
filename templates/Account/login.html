@@ -13,7 +13,7 @@
                     <div class="box">
                         <h1 class="text-center">Welcome Back!</h1>
                         <p class="text-muted text-center">If you have any questions, please feel free to <a
-                            href="#">contact us</a></p>
+                            href="{% url 'home:contact' %}">contact us</a></p>
                         <hr>
                         <form action="{% url 'account:user_login' %}" method="POST">
                             {% csrf_token %}
@@ -26,12 +26,13 @@
                                 <input id="password" type="password" name="password" class="form-control" required>
                             </div>
                             <div class="text-right">
-                                <h4><a href="#">Forget Password?</a></h4>
+                                <h4><a href="{% url 'account:password_reset' %}">Forget Password?</a></h4>
                                 
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log
-                                    in</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-sign-in"></i> Log in
+                                </button>
                             </div>
                         </form>
                         <hr>

@@ -33,7 +33,7 @@
                 <div id="customer-order" class="col-lg-9">
                     <div class="box">
                         <h2>Order #{{ order.orderId }}</h2>
-                        <p class="lead">This Order was placed on {{ order.updated | date:"d/m/Y" }} and is currently
+                        <p class="lead">This Order was placed on {{ order.updated | date:"d/m/Y" }} at {{ order.updated | date:"g:i A" }} and is currently
                             in {{ order.get_status_display }}.</p>
                         <p class="text-muted">If you have any questions, please feel free to <a
                                 href="{% url 'home:contact' %}">contact us</a>, our customer service center is working for you 24/7.
@@ -67,40 +67,49 @@
 
                                             <td class="text-center">${{ cart.product.price }}</td>
 
-                                            <td class="text-right pr-5">${{ cart.get_cart_total }}</td>
+                                            <td class="text-right pr-4">${{ cart.get_cart_total }}</td>
                                         </tr>
                                         {% endfor %}
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="4" class="text-right">Order subtotal</th>
-                                        <th>$446.00</th>
+                                        <th colspan="4" class="text-right">
+                                            Order Sub-Total
+                                        </th>
+                                        <th class="text-right pr-4">
+                                            ${{ order.get_order_sub_total }}
+                                        </th>
                                     </tr>
                                     <tr>
-                                        <th colspan="4" class="text-right">Shipping and handling</th>
-                                        <th>$10.00</th>
+                                        <th colspan="4" class="text-right">
+                                            Shipping and handling - [{{ order.delivery_method.name }}]
+                                        </th>
+                                        <th class="text-right pr-4">
+                                            ${{ order.delivery_method.cost | floatformat:2 }}
+                                        </th>
                                     </tr>
                                     <tr>
-                                        <th colspan="4" class="text-right">Tax</th>
-                                        <th>$0.00</th>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="4" class="text-right">Total</th>
-                                        <th>$456.00</th>
+                                        <th colspan="4" class="text-right">
+                                            Total Amount
+                                        </th>
+                                        <th class="text-right pr-4">
+                                            ${{ order.get_total_amount }}
+                                        </th>
                                     </tr>
                                 </tfoot>
                             </table>
+                            <hr>
                         </div>
-                        <!-- /.table-responsive-->
-                        <div class="row addresses">
-                            <div class="col-lg-6">
-                                <h2>Invoice address</h2>
-                                <p>John Brown<br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>England<br>Great Britain
-                                </p>
-                            </div>
-                            <div class="col-lg-6">
+                        
+                        <div class="row addresses text-right">
+                            <div class="col-lg-12">
                                 <h2>Shipping address</h2>
-                                <p>John Brown<br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>England<br>Great Britain
+                                <p>{{ order.shipping_address.fullname }}<br>
+                                    {{ order.shipping_address.address1 }}<br>
+                                    {{ order.shipping_address.address2 }}, {{ order.shipping_address.city }}<br>
+                                    {{ order.shipping_address.state }} - {{ order.shipping_address.zipcode }}<br>
+                                    {{ order.shipping_address.country.name }}<br>
+                                    {{ order.shipping_address.phone }}
                                 </p>
                             </div>
                         </div>

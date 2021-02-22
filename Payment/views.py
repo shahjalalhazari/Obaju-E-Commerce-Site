@@ -17,7 +17,10 @@ def shipping_address(request):
     if request.method == "POST":
         form = ShippingAddressForm(request.POST, instance=saved_address)
         if form.is_valid():
-            form.save()
+            shipping_address = form.save()
+            order_qs = Order.objects.get(user=request.user, ordered=False) # get current order of this user
+            order_qs.shipping_address = shipping_address # add shipping address into current order
+            order_qs.save() # save order qs
             messages.success(request, "Address saved!")
             return HttpResponseRedirect(reverse("payment:delivery_method"))
     context = {

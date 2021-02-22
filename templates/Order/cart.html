@@ -34,7 +34,7 @@
 
                                 <thead>
                                     <tr>
-                                        <th colspan="2" class="text-left pl-5">Product</th>
+                                        <th colspan="2" class="">Product</th>
                                         <th class="text-center">Quantity</th>
                                         <th class="text-center">Unit price</th>
                                         <th class="text-center">Total</th>
@@ -50,7 +50,7 @@
                                                 alt="{{ cart.product.title }}" style="width: 50px;">
                                         </td>
 
-                                        <td class="text-left" style="padding: 0; margin-left: 10px;">
+                                        <td class="text-left" style="padding: 0; margin: 0;">
                                             <a href="{% url 'store:product_detail' pk=cart.product.pk %}">
                                                 {{ cart.product.title }}
                                             </a>
@@ -122,13 +122,21 @@
                             <div class="product same-height">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="img/product3.jpg" alt=""
-                                                    class="img-fluid"></a></div>
-                                        <div class="back"><a href="detail.html"><img src="img/product3_2.jpg" alt=""
-                                                    class="img-fluid"></a></div>
+                                        <div class="front">
+                                            <a href="#">
+                                                <img src="{% static 'img/product3.jpg' %}" alt="" class="img-fluid">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="#">
+                                                <img src="{% static 'img/product3_2.jpg' %}" alt="" class="img-fluid">
+                                            </a>
+                                        </div>
                                     </div>
-                                </div><a href="detail.html" class="invisible"><img src="img/product3.jpg" alt=""
-                                        class="img-fluid"></a>
+                                </div>
+                                <a href="#" class="invisible">
+                                    <img src="{% static 'img/product3.jpg' %}" alt="" class="img-fluid">
+                                </a>
                                 <div class="text">
                                     <h3>Fur coat</h3>
                                     <p class="price">$143</p>

@@ -26,7 +26,7 @@ def signup(request):
             user.save()
             site = get_current_site(request)
             subject = "Confirmation message to active your account."
-            message = render_to_string("account/activation_mail.html", {
+            message = render_to_string("Account/activation_mail.html", {
                 "user": user,
                 "domain": site.domain,
                 "uid": user.id,

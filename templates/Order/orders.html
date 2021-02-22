@@ -35,6 +35,7 @@
 							<a href="{% url 'home:contact' %}">contact us</a>,
 							our customer service center is working for you 24/7.</p>
 						<hr>
+						{% if orders %}
 						<div class="table-responsive">
 							<table class="table table-hover">
 								<thead>
@@ -52,7 +53,7 @@
 									<tr>
 										<th class="text-center">{{ forloop.counter }}</th>
 										<th class="text-center">{{ order.orderId | orderId_filter }}</th>
-										<td class="text-center">{{ order.updated | date:"g:iA, d/m/y" }}</td>
+										<td class="text-center">{{ order.updated | date:"g:i A, d/m/y" }}</td>
 										<td class="text-center">${{ order.get_total_amount }}</td>
 										<td class="text-center">
 											<span class=" badge 
@@ -73,6 +74,10 @@
 								</tbody>
 							</table>
 						</div>
+						{% else %}
+						<h1>You haven't ordered anything yet.</h1>
+						{% endif %}
+						
 					</div>
 				</div>
 			</div>

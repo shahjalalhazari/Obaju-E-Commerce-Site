@@ -88,9 +88,9 @@
 								</p>
 								<p class="price">
 									<del style="color: #999;">
-										{% if product.old_price %}${{ product.old_price }}{% endif %}
+										{% if product.old_price %}${{ product.old_price | floatformat:2 }}{% endif %}
 									</del>
-									${{ product.price }}
+									${{ product.price | floatformat:2 }}
 								</p>
 								<p class="text-center buttons">
 									<a href="{% url 'order:add' pk=product.pk %}" class="btn btn-primary">

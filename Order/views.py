@@ -127,7 +127,7 @@ def orders(request):
 # CUSTOMER ORDER VIEW
 @login_required
 def order(request, pk, orderId):
-    order = Order.objects.filter(orderId=orderId)[0]
+    order = Order.objects.get(orderId=orderId)
     context = {
         'order': order,
     }
